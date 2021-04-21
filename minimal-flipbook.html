@@ -1,0 +1,2566 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Demonstration of using ggplot</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="David Dobrowski" />
+    <script src="libs/header-attrs-2.7/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Demonstration of using ggplot
+## Why I never use Excel anymore
+### David Dobrowski
+
+---
+
+
+
+
+
+
+
+
+---
+name: poppies
+class: inverse, middle, center
+background-image: url(img/laurentiu-iordache-qstGMhWuORE-unsplash.jpg)
+background-size: cover 
+
+
+---
+# First up: classic flipbook, using defaults to walk through code pipeline
+
+
+
+
+---
+
+https://www.autodesk.com/research/publications/same-stats-different-graphs
+
+
+
+
+
+---
+
+# Principle of Proportional Ink
+
+--
+The sizes of shaded areas in a visualization need to be proportional to the data values they represent.
+
+--
+Eliminate clutter
+
+--
+
+Focus attention
+
+
+---
+
+data + aesthetics + geom 
+
+
+---
+
+
+count: false
+ 
+
+.panel1-intro-auto[
+
+```r
+# New data source for schools
+
+*caaspp
+```
+]
+ 
+.panel2-intro-auto[
+
+```
+ [1] id                                    County_Code                          
+ [3] District_Code                         School_Code                          
+ [5] Filler                                Test_Year                            
+ [7] Subgroup_ID                           Test_Type                            
+ [9] Total_CAASPP_Enrollment               Total_Tested_At_Entity_Level         
+[11] Total_Tested_at_Subgroup_Level        Grade                                
+[13] Test_Id                               CAASPP_Reported_Enrollment           
+[15] Students_Tested                       Mean_Scale_Score                     
+[17] Percentage_Standard_Exceeded          Percentage_Standard_Met              
+[19] Percentage_Standard_Met_and_Above     Percentage_Standard_Nearly_Met       
+[21] Percentage_Standard_Not_Met           Students_with_Scores                 
+[23] Area_1_Percentage_Above_Standard      Area_1_Percentage_At_or_Near_Standard
+[25] Area_1_Percentage_Below_Standard      Area_2_Percentage_Above_Standard     
+[27] Area_2_Percentage_At_or_Near_Standard Area_2_Percentage_Below_Standard     
+[29] Area_3_Percentage_Above_Standard      Area_3_Percentage_At_or_Near_Standard
+[31] Area_3_Percentage_Below_Standard      Area_4_Percentage_Above_Standard     
+[33] Area_4_Percentage_At_or_Near_Standard Area_4_Percentage_Below_Standard     
+[35] Total_Tested_with_Scores              Area_1_Percentage_Near_Standard      
+[37] Area_2_Percentage_Near_Standard       Area_3_Percentage_Near_Standard      
+[39] Area_4_Percentage_Near_Standard      
+&lt;0 rows&gt; (or 0-length row.names)
+```
+]
+
+---
+count: false
+ 
+
+.panel1-intro-auto[
+
+```r
+# New data source for schools
+
+caaspp %&gt;%
+*ggplot()
+```
+]
+ 
+.panel2-intro-auto[
+![](minimal-flipbook_files/figure-html/intro_auto_02_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-intro-auto[
+
+```r
+# New data source for schools
+
+caaspp %&gt;%
+ggplot() +
+* aes(y = Percentage_Standard_Exceeded)
+```
+]
+ 
+.panel2-intro-auto[
+![](minimal-flipbook_files/figure-html/intro_auto_03_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-intro-auto[
+
+```r
+# New data source for schools
+
+caaspp %&gt;%
+ggplot() +
+  aes(y = Percentage_Standard_Exceeded) +
+* aes(x = Percentage_Standard_Not_Met)
+```
+]
+ 
+.panel2-intro-auto[
+![](minimal-flipbook_files/figure-html/intro_auto_04_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-intro-auto[
+
+```r
+# New data source for schools
+
+caaspp %&gt;%
+ggplot() +
+  aes(y = Percentage_Standard_Exceeded) +
+  aes(x = Percentage_Standard_Not_Met)  +
+* geom_point()
+```
+]
+ 
+.panel2-intro-auto[
+![](minimal-flipbook_files/figure-html/intro_auto_05_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-intro-auto[
+
+```r
+# New data source for schools
+
+caaspp %&gt;%
+ggplot() +
+  aes(y = Percentage_Standard_Exceeded) +
+  aes(x = Percentage_Standard_Not_Met)  +
+  geom_point() +
+* aes(shape = County_Code )
+```
+]
+ 
+.panel2-intro-auto[
+![](minimal-flipbook_files/figure-html/intro_auto_06_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-intro-auto[
+
+```r
+# New data source for schools
+
+caaspp %&gt;%
+ggplot() +
+  aes(y = Percentage_Standard_Exceeded) +
+  aes(x = Percentage_Standard_Not_Met)  +
+  geom_point() +
+  aes(shape = County_Code )
+```
+]
+ 
+.panel2-intro-auto[
+![](minimal-flipbook_files/figure-html/intro_auto_07_output-1.png)&lt;!-- --&gt;
+]
+
+&lt;style&gt;
+.panel1-intro-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-intro-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-intro-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
+
+
+
+
+
+---
+
+count: false
+ 
+
+.panel1-bar-auto[
+
+```r
+*susp.green
+```
+]
+ 
+.panel2-bar-auto[
+
+```
+      X academic_year         school_name reporting_category
+1     1       2011-12     Greenfield High                 GF
+2     2       2011-12     Greenfield High                 GM
+3     3       2011-12     Greenfield High                 RH
+4     4       2011-12     Greenfield High                 RW
+5     5       2011-12     Greenfield High                 SE
+6     6       2011-12 State of California                 GF
+7     7       2011-12 State of California                 GM
+8     8       2011-12 State of California                 RH
+9     9       2011-12 State of California                 RW
+10   10       2011-12 State of California                 SE
+11   11       2011-12 State of California                 TA
+12   12       2012-13 State of California                 GF
+13   13       2012-13 State of California                 GM
+14   14       2012-13 State of California                 RH
+15   15       2012-13 State of California                 RW
+16   16       2011-12     Greenfield High                 TA
+17   17       2012-13     Greenfield High                 GF
+18   18       2012-13     Greenfield High                 GM
+19   19       2012-13     Greenfield High                 RH
+20   20       2012-13     Greenfield High                 RW
+21   21       2012-13     Greenfield High                 SE
+22   22       2012-13     Greenfield High                 TA
+23   23       2013-14 State of California                 GF
+24   24       2013-14 State of California                 GM
+25   25       2013-14 State of California                 RH
+26   26       2013-14     Greenfield High                 GF
+27   27       2013-14     Greenfield High                 GM
+28   28       2013-14     Greenfield High                 RH
+29   29       2013-14     Greenfield High                 RW
+30   30       2013-14     Greenfield High                 SE
+31   31       2013-14     Greenfield High                 TA
+32   32       2014-15 State of California                 GF
+33   33       2014-15 State of California                 GM
+34   34       2014-15 State of California                 RH
+35   35       2014-15 State of California                 RW
+36   36       2014-15 State of California                 SE
+37   37       2014-15 State of California                 SH
+38   38       2014-15 State of California                 SM
+39   39       2014-15 State of California                 SS
+40   40       2014-15 State of California                 TA
+41   41       2012-13 State of California                 SE
+42   42       2012-13 State of California                 TA
+43   43       2014-15     Greenfield High                 GF
+44   44       2014-15     Greenfield High                 GM
+45   45       2014-15     Greenfield High                 RH
+46   46       2014-15     Greenfield High                 RW
+47   47       2014-15     Greenfield High                 SE
+48   48       2014-15     Greenfield High                 SH
+49   49       2014-15     Greenfield High                 SM
+50   50       2014-15     Greenfield High                 SS
+51   51       2014-15     Greenfield High                 TA
+52   52       2015-16 State of California                 GF
+53   53       2015-16 State of California                 GM
+54   54       2015-16 State of California                 RH
+55   55       2015-16 State of California                 RW
+56   56       2015-16 State of California                 SD
+57   57       2015-16 State of California                 SE
+58   58       2015-16 State of California                 SH
+59   59       2013-14 State of California                 RW
+60   60       2013-14 State of California                 SE
+61   61       2013-14 State of California                 TA
+62   62       2015-16     Greenfield High                 GF
+63   63       2015-16     Greenfield High                 GM
+64   64       2015-16     Greenfield High                 RH
+65   65       2015-16     Greenfield High                 RW
+66   66       2015-16     Greenfield High                 SD
+67   67       2015-16     Greenfield High                 SE
+68   68       2015-16     Greenfield High                 SH
+69   69       2015-16     Greenfield High                 SM
+70   70       2015-16     Greenfield High                 SS
+71   71       2015-16     Greenfield High                 TA
+72   72       2015-16 State of California                 SM
+73   73       2015-16 State of California                 SS
+74   74       2015-16 State of California                 TA
+75   75       2016-17 State of California                 GF
+76   76       2016-17 State of California                 GM
+77   77       2016-17 State of California                 RH
+78   78       2016-17 State of California                 RW
+79   79       2016-17 State of California                 SD
+80   80       2016-17 State of California                 SE
+81   81       2016-17 State of California                 SH
+82   82       2016-17 State of California                 SM
+83   83       2016-17 State of California                 SS
+84   84       2016-17 State of California                 TA
+85   85       2016-17     Greenfield High                 GF
+86   86       2016-17     Greenfield High                 GM
+87   87       2016-17     Greenfield High                 RH
+88   88       2016-17     Greenfield High                 RW
+89   89       2016-17     Greenfield High                 SD
+90   90       2016-17     Greenfield High                 SE
+91   91       2016-17     Greenfield High                 SH
+92   92       2016-17     Greenfield High                 SM
+93   93       2016-17     Greenfield High                 SS
+94   94       2016-17     Greenfield High                 TA
+95   95       2017-18     Greenfield High                 GF
+96   96       2017-18     Greenfield High                 GM
+97   97       2017-18     Greenfield High                 RH
+98   98       2017-18     Greenfield High                 RW
+99   99       2017-18     Greenfield High                 SD
+100 100       2017-18     Greenfield High                 SE
+101 101       2017-18     Greenfield High                 SH
+102 102       2017-18     Greenfield High                 SM
+103 103       2017-18     Greenfield High                 SS
+104 104       2017-18     Greenfield High                 TA
+105 105       2017-18 State of California                 GF
+106 106       2017-18 State of California                 GM
+107 107       2017-18 State of California                 RH
+108 108       2017-18 State of California                 RW
+109 109       2017-18 State of California                 SD
+110 110       2017-18 State of California                 SE
+111 111       2017-18 State of California                 SH
+112 112       2017-18 State of California                 SM
+113 113       2017-18 State of California                 SS
+114 114       2017-18 State of California                 TA
+115 115       2018-19     Greenfield High                 GF
+116 116       2018-19     Greenfield High                 GF
+117 117       2018-19     Greenfield High                 GM
+118 118       2018-19     Greenfield High                 GM
+119 119       2018-19     Greenfield High                 RH
+120 120       2018-19     Greenfield High                 RH
+121 121       2018-19     Greenfield High                 RW
+122 122       2018-19     Greenfield High                 RW
+123 123       2018-19     Greenfield High                 SD
+124 124       2018-19     Greenfield High                 SD
+125 125       2018-19     Greenfield High                 SE
+126 126       2018-19     Greenfield High                 SE
+127 127       2018-19     Greenfield High                 SH
+128 128       2018-19     Greenfield High                 SH
+129 129       2018-19     Greenfield High                 SM
+130 130       2018-19     Greenfield High                 SM
+131 131       2018-19     Greenfield High                 SS
+132 132       2018-19     Greenfield High                 SS
+133 133       2018-19 State of California                 GF
+134 134       2018-19 State of California                 GM
+135 135       2018-19 State of California                 RH
+136 136       2018-19 State of California                 RW
+137 137       2018-19 State of California                 SD
+138 138       2018-19 State of California                 SE
+139 139       2018-19 State of California                 SH
+140 140       2018-19 State of California                 SM
+141 141       2018-19     Greenfield High                 TA
+142 142       2018-19     Greenfield High                 TA
+143 143       2019-20     Greenfield High                 GF
+144 144       2019-20     Greenfield High                 GM
+145 145       2019-20     Greenfield High                 RH
+146 146       2019-20     Greenfield High                 RW
+147 147       2019-20     Greenfield High                 SD
+148 148       2019-20     Greenfield High                 SE
+149 149       2019-20     Greenfield High                 SH
+150 150       2019-20     Greenfield High                 SM
+151 151       2019-20     Greenfield High                 SS
+152 152       2019-20     Greenfield High                 TA
+153 153       2018-19 State of California                 SS
+154 154       2018-19 State of California                 TA
+155 155       2019-20 State of California                 GF
+156 156       2019-20 State of California                 GM
+157 157       2019-20 State of California                 RH
+158 158       2019-20 State of California                 RW
+159 159       2019-20 State of California                 SD
+160 160       2019-20 State of California                 SE
+161 161       2019-20 State of California                 SH
+162 162       2019-20 State of California                 SM
+163 163       2019-20 State of California                 SS
+164 164       2019-20 State of California                 TA
+                         definition suspension_rate_total
+1                            Female                   5.4
+2                              Male                  13.4
+3                Hispanic or Latino                   9.5
+4                             White                   5.6
+5                  English Learners                  13.4
+6                            Female                   3.3
+7                              Male                   8.0
+8                Hispanic or Latino                   6.1
+9                             White                   4.7
+10                 English Learners                   6.7
+11                            Total                   5.7
+12                           Female                   2.9
+13                             Male                   7.3
+14               Hispanic or Latino                   5.4
+15                            White                   4.2
+16                            Total                   9.5
+17                           Female                   6.7
+18                             Male                  22.5
+19               Hispanic or Latino                  14.9
+20                            White                  13.6
+21                 English Learners                  18.6
+22                            Total                  14.6
+23                           Female                   2.4
+24                             Male                   6.2
+25               Hispanic or Latino                   4.5
+26                           Female                   3.0
+27                             Male                  11.6
+28               Hispanic or Latino                   7.4
+29                            White                   8.3
+30                 English Learners                  10.1
+31                            Total                   7.3
+32                           Female                   2.1
+33                             Male                   5.4
+34               Hispanic or Latino                   3.8
+35                            White                   3.2
+36                 English Learners                   3.3
+37                         Homeless                   6.0
+38                          Migrant                   4.3
+39  Socioeconomically Disadvantaged                   4.9
+40                            Total                   3.8
+41                 English Learners                   5.8
+42                            Total                   5.2
+43                           Female                   4.5
+44                             Male                  14.7
+45               Hispanic or Latino                   9.8
+46                            White                   8.7
+47                 English Learners                  14.1
+48                         Homeless                  13.7
+49                          Migrant                   5.2
+50  Socioeconomically Disadvantaged                   9.8
+51                            Total                   9.7
+52                           Female                   2.0
+53                             Male                   5.2
+54               Hispanic or Latino                   3.7
+55                            White                   3.1
+56       Students with Disabilities                   7.4
+57                 English Learners                   3.1
+58                         Homeless                   5.9
+59                            White                   3.6
+60                 English Learners                   3.6
+61                            Total                   4.3
+62                           Female                   4.9
+63                             Male                  15.3
+64               Hispanic or Latino                  10.2
+65                            White                  12.5
+66       Students with Disabilities                  11.4
+67                 English Learners                  14.5
+68                         Homeless                  12.4
+69                          Migrant                   8.2
+70  Socioeconomically Disadvantaged                  11.2
+71                            Total                  10.3
+72                          Migrant                   4.1
+73  Socioeconomically Disadvantaged                   4.7
+74                            Total                   3.7
+75                           Female                   2.0
+76                             Male                   5.2
+77               Hispanic or Latino                   3.7
+78                            White                   3.2
+79       Students with Disabilities                   7.1
+80                 English Learners                   3.1
+81                         Homeless                   5.8
+82                          Migrant                   4.0
+83  Socioeconomically Disadvantaged                   4.7
+84                            Total                   3.6
+85                           Female                   8.7
+86                             Male                  24.7
+87               Hispanic or Latino                  16.9
+88                            White                  16.7
+89       Students with Disabilities                  32.5
+90                 English Learners                  23.7
+91                         Homeless                  13.6
+92                          Migrant                  13.2
+93  Socioeconomically Disadvantaged                  17.3
+94                            Total                  16.8
+95                           Female                  13.2
+96                             Male                  29.2
+97               Hispanic or Latino                  21.7
+98                            White                  13.6
+99       Students with Disabilities                  29.1
+100                English Learners                  24.4
+101                        Homeless                  28.1
+102                         Migrant                  18.6
+103 Socioeconomically Disadvantaged                  22.1
+104                           Total                  21.5
+105                          Female                   2.0
+106                            Male                   5.0
+107              Hispanic or Latino                   3.6
+108                           White                   3.0
+109      Students with Disabilities                   6.8
+110                English Learners                   3.0
+111                        Homeless                   5.6
+112                         Migrant                   4.0
+113 Socioeconomically Disadvantaged                   4.4
+114                           Total                   3.5
+115                          Female                  10.8
+116                          Female                  10.8
+117                            Male                  28.3
+118                            Male                  28.3
+119              Hispanic or Latino                  19.7
+120              Hispanic or Latino                  19.7
+121                           White                  15.8
+122                           White                  15.8
+123      Students with Disabilities                  31.7
+124      Students with Disabilities                  31.7
+125                English Learners                  28.0
+126                English Learners                  28.0
+127                        Homeless                  30.0
+128                        Homeless                  30.0
+129                         Migrant                  17.0
+130                         Migrant                  17.0
+131 Socioeconomically Disadvantaged                  20.6
+132 Socioeconomically Disadvantaged                  20.6
+133                          Female                   2.0
+134                            Male                   4.8
+135              Hispanic or Latino                   3.6
+136                           White                   3.0
+137      Students with Disabilities                   6.4
+138                English Learners                   3.2
+139                        Homeless                   6.3
+140                         Migrant                   4.0
+141                           Total                  19.6
+142                           Total                  19.6
+143                          Female                   9.9
+144                            Male                  15.3
+145              Hispanic or Latino                  12.9
+146                           White                   0.0
+147      Students with Disabilities                  25.6
+148                English Learners                  21.1
+149                        Homeless                  18.7
+150                         Migrant                  15.0
+151 Socioeconomically Disadvantaged                  13.1
+152                           Total                  12.7
+153 Socioeconomically Disadvantaged                   4.4
+154                           Total                   3.5
+155                          Female                   1.4
+156                            Male                   3.4
+157              Hispanic or Latino                   2.5
+158                           White                   2.0
+159      Students with Disabilities                   4.9
+160                English Learners                   2.4
+161                        Homeless                   4.7
+162                         Migrant                   2.8
+163 Socioeconomically Disadvantaged                   3.2
+164                           Total                   2.5
+```
+]
+
+---
+count: false
+ 
+
+.panel1-bar-auto[
+
+```r
+susp.green %&gt;%
+* filter(reporting_category == "TA")
+```
+]
+ 
+.panel2-bar-auto[
+
+```
+     X academic_year         school_name reporting_category definition
+1   11       2011-12 State of California                 TA      Total
+2   16       2011-12     Greenfield High                 TA      Total
+3   22       2012-13     Greenfield High                 TA      Total
+4   31       2013-14     Greenfield High                 TA      Total
+5   40       2014-15 State of California                 TA      Total
+6   42       2012-13 State of California                 TA      Total
+7   51       2014-15     Greenfield High                 TA      Total
+8   61       2013-14 State of California                 TA      Total
+9   71       2015-16     Greenfield High                 TA      Total
+10  74       2015-16 State of California                 TA      Total
+11  84       2016-17 State of California                 TA      Total
+12  94       2016-17     Greenfield High                 TA      Total
+13 104       2017-18     Greenfield High                 TA      Total
+14 114       2017-18 State of California                 TA      Total
+15 141       2018-19     Greenfield High                 TA      Total
+16 142       2018-19     Greenfield High                 TA      Total
+17 152       2019-20     Greenfield High                 TA      Total
+18 154       2018-19 State of California                 TA      Total
+19 164       2019-20 State of California                 TA      Total
+   suspension_rate_total
+1                    5.7
+2                    9.5
+3                   14.6
+4                    7.3
+5                    3.8
+6                    5.2
+7                    9.7
+8                    4.3
+9                   10.3
+10                   3.7
+11                   3.6
+12                  16.8
+13                  21.5
+14                   3.5
+15                  19.6
+16                  19.6
+17                  12.7
+18                   3.5
+19                   2.5
+```
+]
+
+---
+count: false
+ 
+
+.panel1-bar-auto[
+
+```r
+susp.green %&gt;%
+  filter(reporting_category == "TA") %&gt;%
+* ggplot( )
+```
+]
+ 
+.panel2-bar-auto[
+![](minimal-flipbook_files/figure-html/bar_auto_03_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-bar-auto[
+
+```r
+susp.green %&gt;%
+  filter(reporting_category == "TA") %&gt;%
+  ggplot( ) +
+* aes(x = academic_year)
+```
+]
+ 
+.panel2-bar-auto[
+![](minimal-flipbook_files/figure-html/bar_auto_04_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-bar-auto[
+
+```r
+susp.green %&gt;%
+  filter(reporting_category == "TA") %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+* aes(y = as.numeric( suspension_rate_total)/100)
+```
+]
+ 
+.panel2-bar-auto[
+![](minimal-flipbook_files/figure-html/bar_auto_05_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-bar-auto[
+
+```r
+susp.green %&gt;%
+  filter(reporting_category == "TA") %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+* geom_col(position = "dodge" )
+```
+]
+ 
+.panel2-bar-auto[
+![](minimal-flipbook_files/figure-html/bar_auto_06_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-bar-auto[
+
+```r
+susp.green %&gt;%
+  filter(reporting_category == "TA") %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_col(position = "dodge" ) +
+* aes(group = school_name)
+```
+]
+ 
+.panel2-bar-auto[
+![](minimal-flipbook_files/figure-html/bar_auto_07_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-bar-auto[
+
+```r
+susp.green %&gt;%
+  filter(reporting_category == "TA") %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_col(position = "dodge" ) +
+  aes(group = school_name) +
+* aes(color = school_name)
+```
+]
+ 
+.panel2-bar-auto[
+![](minimal-flipbook_files/figure-html/bar_auto_08_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-bar-auto[
+
+```r
+susp.green %&gt;%
+  filter(reporting_category == "TA") %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_col(position = "dodge" ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+* aes(fill = school_name)
+```
+]
+ 
+.panel2-bar-auto[
+![](minimal-flipbook_files/figure-html/bar_auto_09_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-bar-auto[
+
+```r
+susp.green %&gt;%
+  filter(reporting_category == "TA") %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_col(position = "dodge" ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+  aes(fill = school_name) +
+*   labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time")
+```
+]
+ 
+.panel2-bar-auto[
+![](minimal-flipbook_files/figure-html/bar_auto_10_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-bar-auto[
+
+```r
+susp.green %&gt;%
+  filter(reporting_category == "TA") %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_col(position = "dodge" ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+  aes(fill = school_name) +
+    labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
+*   labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp")
+```
+]
+ 
+.panel2-bar-auto[
+![](minimal-flipbook_files/figure-html/bar_auto_11_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-bar-auto[
+
+```r
+susp.green %&gt;%
+  filter(reporting_category == "TA") %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_col(position = "dodge" ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+  aes(fill = school_name) +
+    labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
+    labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp")
+```
+]
+ 
+.panel2-bar-auto[
+![](minimal-flipbook_files/figure-html/bar_auto_12_output-1.png)&lt;!-- --&gt;
+]
+
+&lt;style&gt;
+.panel1-bar-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-bar-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-bar-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
+
+
+
+
+---
+
+count: false
+ 
+
+.panel1-first-auto[
+
+```r
+*susp.green
+```
+]
+ 
+.panel2-first-auto[
+
+```
+      X academic_year         school_name reporting_category
+1     1       2011-12     Greenfield High                 GF
+2     2       2011-12     Greenfield High                 GM
+3     3       2011-12     Greenfield High                 RH
+4     4       2011-12     Greenfield High                 RW
+5     5       2011-12     Greenfield High                 SE
+6     6       2011-12 State of California                 GF
+7     7       2011-12 State of California                 GM
+8     8       2011-12 State of California                 RH
+9     9       2011-12 State of California                 RW
+10   10       2011-12 State of California                 SE
+11   11       2011-12 State of California                 TA
+12   12       2012-13 State of California                 GF
+13   13       2012-13 State of California                 GM
+14   14       2012-13 State of California                 RH
+15   15       2012-13 State of California                 RW
+16   16       2011-12     Greenfield High                 TA
+17   17       2012-13     Greenfield High                 GF
+18   18       2012-13     Greenfield High                 GM
+19   19       2012-13     Greenfield High                 RH
+20   20       2012-13     Greenfield High                 RW
+21   21       2012-13     Greenfield High                 SE
+22   22       2012-13     Greenfield High                 TA
+23   23       2013-14 State of California                 GF
+24   24       2013-14 State of California                 GM
+25   25       2013-14 State of California                 RH
+26   26       2013-14     Greenfield High                 GF
+27   27       2013-14     Greenfield High                 GM
+28   28       2013-14     Greenfield High                 RH
+29   29       2013-14     Greenfield High                 RW
+30   30       2013-14     Greenfield High                 SE
+31   31       2013-14     Greenfield High                 TA
+32   32       2014-15 State of California                 GF
+33   33       2014-15 State of California                 GM
+34   34       2014-15 State of California                 RH
+35   35       2014-15 State of California                 RW
+36   36       2014-15 State of California                 SE
+37   37       2014-15 State of California                 SH
+38   38       2014-15 State of California                 SM
+39   39       2014-15 State of California                 SS
+40   40       2014-15 State of California                 TA
+41   41       2012-13 State of California                 SE
+42   42       2012-13 State of California                 TA
+43   43       2014-15     Greenfield High                 GF
+44   44       2014-15     Greenfield High                 GM
+45   45       2014-15     Greenfield High                 RH
+46   46       2014-15     Greenfield High                 RW
+47   47       2014-15     Greenfield High                 SE
+48   48       2014-15     Greenfield High                 SH
+49   49       2014-15     Greenfield High                 SM
+50   50       2014-15     Greenfield High                 SS
+51   51       2014-15     Greenfield High                 TA
+52   52       2015-16 State of California                 GF
+53   53       2015-16 State of California                 GM
+54   54       2015-16 State of California                 RH
+55   55       2015-16 State of California                 RW
+56   56       2015-16 State of California                 SD
+57   57       2015-16 State of California                 SE
+58   58       2015-16 State of California                 SH
+59   59       2013-14 State of California                 RW
+60   60       2013-14 State of California                 SE
+61   61       2013-14 State of California                 TA
+62   62       2015-16     Greenfield High                 GF
+63   63       2015-16     Greenfield High                 GM
+64   64       2015-16     Greenfield High                 RH
+65   65       2015-16     Greenfield High                 RW
+66   66       2015-16     Greenfield High                 SD
+67   67       2015-16     Greenfield High                 SE
+68   68       2015-16     Greenfield High                 SH
+69   69       2015-16     Greenfield High                 SM
+70   70       2015-16     Greenfield High                 SS
+71   71       2015-16     Greenfield High                 TA
+72   72       2015-16 State of California                 SM
+73   73       2015-16 State of California                 SS
+74   74       2015-16 State of California                 TA
+75   75       2016-17 State of California                 GF
+76   76       2016-17 State of California                 GM
+77   77       2016-17 State of California                 RH
+78   78       2016-17 State of California                 RW
+79   79       2016-17 State of California                 SD
+80   80       2016-17 State of California                 SE
+81   81       2016-17 State of California                 SH
+82   82       2016-17 State of California                 SM
+83   83       2016-17 State of California                 SS
+84   84       2016-17 State of California                 TA
+85   85       2016-17     Greenfield High                 GF
+86   86       2016-17     Greenfield High                 GM
+87   87       2016-17     Greenfield High                 RH
+88   88       2016-17     Greenfield High                 RW
+89   89       2016-17     Greenfield High                 SD
+90   90       2016-17     Greenfield High                 SE
+91   91       2016-17     Greenfield High                 SH
+92   92       2016-17     Greenfield High                 SM
+93   93       2016-17     Greenfield High                 SS
+94   94       2016-17     Greenfield High                 TA
+95   95       2017-18     Greenfield High                 GF
+96   96       2017-18     Greenfield High                 GM
+97   97       2017-18     Greenfield High                 RH
+98   98       2017-18     Greenfield High                 RW
+99   99       2017-18     Greenfield High                 SD
+100 100       2017-18     Greenfield High                 SE
+101 101       2017-18     Greenfield High                 SH
+102 102       2017-18     Greenfield High                 SM
+103 103       2017-18     Greenfield High                 SS
+104 104       2017-18     Greenfield High                 TA
+105 105       2017-18 State of California                 GF
+106 106       2017-18 State of California                 GM
+107 107       2017-18 State of California                 RH
+108 108       2017-18 State of California                 RW
+109 109       2017-18 State of California                 SD
+110 110       2017-18 State of California                 SE
+111 111       2017-18 State of California                 SH
+112 112       2017-18 State of California                 SM
+113 113       2017-18 State of California                 SS
+114 114       2017-18 State of California                 TA
+115 115       2018-19     Greenfield High                 GF
+116 116       2018-19     Greenfield High                 GF
+117 117       2018-19     Greenfield High                 GM
+118 118       2018-19     Greenfield High                 GM
+119 119       2018-19     Greenfield High                 RH
+120 120       2018-19     Greenfield High                 RH
+121 121       2018-19     Greenfield High                 RW
+122 122       2018-19     Greenfield High                 RW
+123 123       2018-19     Greenfield High                 SD
+124 124       2018-19     Greenfield High                 SD
+125 125       2018-19     Greenfield High                 SE
+126 126       2018-19     Greenfield High                 SE
+127 127       2018-19     Greenfield High                 SH
+128 128       2018-19     Greenfield High                 SH
+129 129       2018-19     Greenfield High                 SM
+130 130       2018-19     Greenfield High                 SM
+131 131       2018-19     Greenfield High                 SS
+132 132       2018-19     Greenfield High                 SS
+133 133       2018-19 State of California                 GF
+134 134       2018-19 State of California                 GM
+135 135       2018-19 State of California                 RH
+136 136       2018-19 State of California                 RW
+137 137       2018-19 State of California                 SD
+138 138       2018-19 State of California                 SE
+139 139       2018-19 State of California                 SH
+140 140       2018-19 State of California                 SM
+141 141       2018-19     Greenfield High                 TA
+142 142       2018-19     Greenfield High                 TA
+143 143       2019-20     Greenfield High                 GF
+144 144       2019-20     Greenfield High                 GM
+145 145       2019-20     Greenfield High                 RH
+146 146       2019-20     Greenfield High                 RW
+147 147       2019-20     Greenfield High                 SD
+148 148       2019-20     Greenfield High                 SE
+149 149       2019-20     Greenfield High                 SH
+150 150       2019-20     Greenfield High                 SM
+151 151       2019-20     Greenfield High                 SS
+152 152       2019-20     Greenfield High                 TA
+153 153       2018-19 State of California                 SS
+154 154       2018-19 State of California                 TA
+155 155       2019-20 State of California                 GF
+156 156       2019-20 State of California                 GM
+157 157       2019-20 State of California                 RH
+158 158       2019-20 State of California                 RW
+159 159       2019-20 State of California                 SD
+160 160       2019-20 State of California                 SE
+161 161       2019-20 State of California                 SH
+162 162       2019-20 State of California                 SM
+163 163       2019-20 State of California                 SS
+164 164       2019-20 State of California                 TA
+                         definition suspension_rate_total
+1                            Female                   5.4
+2                              Male                  13.4
+3                Hispanic or Latino                   9.5
+4                             White                   5.6
+5                  English Learners                  13.4
+6                            Female                   3.3
+7                              Male                   8.0
+8                Hispanic or Latino                   6.1
+9                             White                   4.7
+10                 English Learners                   6.7
+11                            Total                   5.7
+12                           Female                   2.9
+13                             Male                   7.3
+14               Hispanic or Latino                   5.4
+15                            White                   4.2
+16                            Total                   9.5
+17                           Female                   6.7
+18                             Male                  22.5
+19               Hispanic or Latino                  14.9
+20                            White                  13.6
+21                 English Learners                  18.6
+22                            Total                  14.6
+23                           Female                   2.4
+24                             Male                   6.2
+25               Hispanic or Latino                   4.5
+26                           Female                   3.0
+27                             Male                  11.6
+28               Hispanic or Latino                   7.4
+29                            White                   8.3
+30                 English Learners                  10.1
+31                            Total                   7.3
+32                           Female                   2.1
+33                             Male                   5.4
+34               Hispanic or Latino                   3.8
+35                            White                   3.2
+36                 English Learners                   3.3
+37                         Homeless                   6.0
+38                          Migrant                   4.3
+39  Socioeconomically Disadvantaged                   4.9
+40                            Total                   3.8
+41                 English Learners                   5.8
+42                            Total                   5.2
+43                           Female                   4.5
+44                             Male                  14.7
+45               Hispanic or Latino                   9.8
+46                            White                   8.7
+47                 English Learners                  14.1
+48                         Homeless                  13.7
+49                          Migrant                   5.2
+50  Socioeconomically Disadvantaged                   9.8
+51                            Total                   9.7
+52                           Female                   2.0
+53                             Male                   5.2
+54               Hispanic or Latino                   3.7
+55                            White                   3.1
+56       Students with Disabilities                   7.4
+57                 English Learners                   3.1
+58                         Homeless                   5.9
+59                            White                   3.6
+60                 English Learners                   3.6
+61                            Total                   4.3
+62                           Female                   4.9
+63                             Male                  15.3
+64               Hispanic or Latino                  10.2
+65                            White                  12.5
+66       Students with Disabilities                  11.4
+67                 English Learners                  14.5
+68                         Homeless                  12.4
+69                          Migrant                   8.2
+70  Socioeconomically Disadvantaged                  11.2
+71                            Total                  10.3
+72                          Migrant                   4.1
+73  Socioeconomically Disadvantaged                   4.7
+74                            Total                   3.7
+75                           Female                   2.0
+76                             Male                   5.2
+77               Hispanic or Latino                   3.7
+78                            White                   3.2
+79       Students with Disabilities                   7.1
+80                 English Learners                   3.1
+81                         Homeless                   5.8
+82                          Migrant                   4.0
+83  Socioeconomically Disadvantaged                   4.7
+84                            Total                   3.6
+85                           Female                   8.7
+86                             Male                  24.7
+87               Hispanic or Latino                  16.9
+88                            White                  16.7
+89       Students with Disabilities                  32.5
+90                 English Learners                  23.7
+91                         Homeless                  13.6
+92                          Migrant                  13.2
+93  Socioeconomically Disadvantaged                  17.3
+94                            Total                  16.8
+95                           Female                  13.2
+96                             Male                  29.2
+97               Hispanic or Latino                  21.7
+98                            White                  13.6
+99       Students with Disabilities                  29.1
+100                English Learners                  24.4
+101                        Homeless                  28.1
+102                         Migrant                  18.6
+103 Socioeconomically Disadvantaged                  22.1
+104                           Total                  21.5
+105                          Female                   2.0
+106                            Male                   5.0
+107              Hispanic or Latino                   3.6
+108                           White                   3.0
+109      Students with Disabilities                   6.8
+110                English Learners                   3.0
+111                        Homeless                   5.6
+112                         Migrant                   4.0
+113 Socioeconomically Disadvantaged                   4.4
+114                           Total                   3.5
+115                          Female                  10.8
+116                          Female                  10.8
+117                            Male                  28.3
+118                            Male                  28.3
+119              Hispanic or Latino                  19.7
+120              Hispanic or Latino                  19.7
+121                           White                  15.8
+122                           White                  15.8
+123      Students with Disabilities                  31.7
+124      Students with Disabilities                  31.7
+125                English Learners                  28.0
+126                English Learners                  28.0
+127                        Homeless                  30.0
+128                        Homeless                  30.0
+129                         Migrant                  17.0
+130                         Migrant                  17.0
+131 Socioeconomically Disadvantaged                  20.6
+132 Socioeconomically Disadvantaged                  20.6
+133                          Female                   2.0
+134                            Male                   4.8
+135              Hispanic or Latino                   3.6
+136                           White                   3.0
+137      Students with Disabilities                   6.4
+138                English Learners                   3.2
+139                        Homeless                   6.3
+140                         Migrant                   4.0
+141                           Total                  19.6
+142                           Total                  19.6
+143                          Female                   9.9
+144                            Male                  15.3
+145              Hispanic or Latino                  12.9
+146                           White                   0.0
+147      Students with Disabilities                  25.6
+148                English Learners                  21.1
+149                        Homeless                  18.7
+150                         Migrant                  15.0
+151 Socioeconomically Disadvantaged                  13.1
+152                           Total                  12.7
+153 Socioeconomically Disadvantaged                   4.4
+154                           Total                   3.5
+155                          Female                   1.4
+156                            Male                   3.4
+157              Hispanic or Latino                   2.5
+158                           White                   2.0
+159      Students with Disabilities                   4.9
+160                English Learners                   2.4
+161                        Homeless                   4.7
+162                         Migrant                   2.8
+163 Socioeconomically Disadvantaged                   3.2
+164                           Total                   2.5
+```
+]
+
+---
+count: false
+ 
+
+.panel1-first-auto[
+
+```r
+susp.green %&gt;%
+* filter(reporting_category == "TA")
+```
+]
+ 
+.panel2-first-auto[
+
+```
+     X academic_year         school_name reporting_category definition
+1   11       2011-12 State of California                 TA      Total
+2   16       2011-12     Greenfield High                 TA      Total
+3   22       2012-13     Greenfield High                 TA      Total
+4   31       2013-14     Greenfield High                 TA      Total
+5   40       2014-15 State of California                 TA      Total
+6   42       2012-13 State of California                 TA      Total
+7   51       2014-15     Greenfield High                 TA      Total
+8   61       2013-14 State of California                 TA      Total
+9   71       2015-16     Greenfield High                 TA      Total
+10  74       2015-16 State of California                 TA      Total
+11  84       2016-17 State of California                 TA      Total
+12  94       2016-17     Greenfield High                 TA      Total
+13 104       2017-18     Greenfield High                 TA      Total
+14 114       2017-18 State of California                 TA      Total
+15 141       2018-19     Greenfield High                 TA      Total
+16 142       2018-19     Greenfield High                 TA      Total
+17 152       2019-20     Greenfield High                 TA      Total
+18 154       2018-19 State of California                 TA      Total
+19 164       2019-20 State of California                 TA      Total
+   suspension_rate_total
+1                    5.7
+2                    9.5
+3                   14.6
+4                    7.3
+5                    3.8
+6                    5.2
+7                    9.7
+8                    4.3
+9                   10.3
+10                   3.7
+11                   3.6
+12                  16.8
+13                  21.5
+14                   3.5
+15                  19.6
+16                  19.6
+17                  12.7
+18                   3.5
+19                   2.5
+```
+]
+
+---
+count: false
+ 
+
+.panel1-first-auto[
+
+```r
+susp.green %&gt;%
+  filter(reporting_category == "TA") %&gt;%
+* ggplot( )
+```
+]
+ 
+.panel2-first-auto[
+![](minimal-flipbook_files/figure-html/first_auto_03_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-first-auto[
+
+```r
+susp.green %&gt;%
+  filter(reporting_category == "TA") %&gt;%
+  ggplot( ) +
+* aes(x = academic_year)
+```
+]
+ 
+.panel2-first-auto[
+![](minimal-flipbook_files/figure-html/first_auto_04_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-first-auto[
+
+```r
+susp.green %&gt;%
+  filter(reporting_category == "TA") %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+* aes(y = as.numeric( suspension_rate_total)/100)
+```
+]
+ 
+.panel2-first-auto[
+![](minimal-flipbook_files/figure-html/first_auto_05_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-first-auto[
+
+```r
+susp.green %&gt;%
+  filter(reporting_category == "TA") %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+* geom_line( )
+```
+]
+ 
+.panel2-first-auto[
+![](minimal-flipbook_files/figure-html/first_auto_06_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-first-auto[
+
+```r
+susp.green %&gt;%
+  filter(reporting_category == "TA") %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_line( ) +
+* aes(group = school_name)
+```
+]
+ 
+.panel2-first-auto[
+![](minimal-flipbook_files/figure-html/first_auto_07_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-first-auto[
+
+```r
+susp.green %&gt;%
+  filter(reporting_category == "TA") %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_line( ) +
+  aes(group = school_name) +
+* aes(color = school_name)
+```
+]
+ 
+.panel2-first-auto[
+![](minimal-flipbook_files/figure-html/first_auto_08_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-first-auto[
+
+```r
+susp.green %&gt;%
+  filter(reporting_category == "TA") %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_line( ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+*   labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time")
+```
+]
+ 
+.panel2-first-auto[
+![](minimal-flipbook_files/figure-html/first_auto_09_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-first-auto[
+
+```r
+susp.green %&gt;%
+  filter(reporting_category == "TA") %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_line( ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+    labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
+*   labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp")
+```
+]
+ 
+.panel2-first-auto[
+![](minimal-flipbook_files/figure-html/first_auto_10_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-first-auto[
+
+```r
+susp.green %&gt;%
+  filter(reporting_category == "TA") %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_line( ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+    labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
+    labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp")
+```
+]
+ 
+.panel2-first-auto[
+![](minimal-flipbook_files/figure-html/first_auto_11_output-1.png)&lt;!-- --&gt;
+]
+
+&lt;style&gt;
+.panel1-first-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-first-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-first-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
+
+
+
+---
+
+count: false
+ 
+
+.panel1-facet-auto[
+
+```r
+*susp.green
+```
+]
+ 
+.panel2-facet-auto[
+
+```
+      X academic_year         school_name reporting_category
+1     1       2011-12     Greenfield High                 GF
+2     2       2011-12     Greenfield High                 GM
+3     3       2011-12     Greenfield High                 RH
+4     4       2011-12     Greenfield High                 RW
+5     5       2011-12     Greenfield High                 SE
+6     6       2011-12 State of California                 GF
+7     7       2011-12 State of California                 GM
+8     8       2011-12 State of California                 RH
+9     9       2011-12 State of California                 RW
+10   10       2011-12 State of California                 SE
+11   11       2011-12 State of California                 TA
+12   12       2012-13 State of California                 GF
+13   13       2012-13 State of California                 GM
+14   14       2012-13 State of California                 RH
+15   15       2012-13 State of California                 RW
+16   16       2011-12     Greenfield High                 TA
+17   17       2012-13     Greenfield High                 GF
+18   18       2012-13     Greenfield High                 GM
+19   19       2012-13     Greenfield High                 RH
+20   20       2012-13     Greenfield High                 RW
+21   21       2012-13     Greenfield High                 SE
+22   22       2012-13     Greenfield High                 TA
+23   23       2013-14 State of California                 GF
+24   24       2013-14 State of California                 GM
+25   25       2013-14 State of California                 RH
+26   26       2013-14     Greenfield High                 GF
+27   27       2013-14     Greenfield High                 GM
+28   28       2013-14     Greenfield High                 RH
+29   29       2013-14     Greenfield High                 RW
+30   30       2013-14     Greenfield High                 SE
+31   31       2013-14     Greenfield High                 TA
+32   32       2014-15 State of California                 GF
+33   33       2014-15 State of California                 GM
+34   34       2014-15 State of California                 RH
+35   35       2014-15 State of California                 RW
+36   36       2014-15 State of California                 SE
+37   37       2014-15 State of California                 SH
+38   38       2014-15 State of California                 SM
+39   39       2014-15 State of California                 SS
+40   40       2014-15 State of California                 TA
+41   41       2012-13 State of California                 SE
+42   42       2012-13 State of California                 TA
+43   43       2014-15     Greenfield High                 GF
+44   44       2014-15     Greenfield High                 GM
+45   45       2014-15     Greenfield High                 RH
+46   46       2014-15     Greenfield High                 RW
+47   47       2014-15     Greenfield High                 SE
+48   48       2014-15     Greenfield High                 SH
+49   49       2014-15     Greenfield High                 SM
+50   50       2014-15     Greenfield High                 SS
+51   51       2014-15     Greenfield High                 TA
+52   52       2015-16 State of California                 GF
+53   53       2015-16 State of California                 GM
+54   54       2015-16 State of California                 RH
+55   55       2015-16 State of California                 RW
+56   56       2015-16 State of California                 SD
+57   57       2015-16 State of California                 SE
+58   58       2015-16 State of California                 SH
+59   59       2013-14 State of California                 RW
+60   60       2013-14 State of California                 SE
+61   61       2013-14 State of California                 TA
+62   62       2015-16     Greenfield High                 GF
+63   63       2015-16     Greenfield High                 GM
+64   64       2015-16     Greenfield High                 RH
+65   65       2015-16     Greenfield High                 RW
+66   66       2015-16     Greenfield High                 SD
+67   67       2015-16     Greenfield High                 SE
+68   68       2015-16     Greenfield High                 SH
+69   69       2015-16     Greenfield High                 SM
+70   70       2015-16     Greenfield High                 SS
+71   71       2015-16     Greenfield High                 TA
+72   72       2015-16 State of California                 SM
+73   73       2015-16 State of California                 SS
+74   74       2015-16 State of California                 TA
+75   75       2016-17 State of California                 GF
+76   76       2016-17 State of California                 GM
+77   77       2016-17 State of California                 RH
+78   78       2016-17 State of California                 RW
+79   79       2016-17 State of California                 SD
+80   80       2016-17 State of California                 SE
+81   81       2016-17 State of California                 SH
+82   82       2016-17 State of California                 SM
+83   83       2016-17 State of California                 SS
+84   84       2016-17 State of California                 TA
+85   85       2016-17     Greenfield High                 GF
+86   86       2016-17     Greenfield High                 GM
+87   87       2016-17     Greenfield High                 RH
+88   88       2016-17     Greenfield High                 RW
+89   89       2016-17     Greenfield High                 SD
+90   90       2016-17     Greenfield High                 SE
+91   91       2016-17     Greenfield High                 SH
+92   92       2016-17     Greenfield High                 SM
+93   93       2016-17     Greenfield High                 SS
+94   94       2016-17     Greenfield High                 TA
+95   95       2017-18     Greenfield High                 GF
+96   96       2017-18     Greenfield High                 GM
+97   97       2017-18     Greenfield High                 RH
+98   98       2017-18     Greenfield High                 RW
+99   99       2017-18     Greenfield High                 SD
+100 100       2017-18     Greenfield High                 SE
+101 101       2017-18     Greenfield High                 SH
+102 102       2017-18     Greenfield High                 SM
+103 103       2017-18     Greenfield High                 SS
+104 104       2017-18     Greenfield High                 TA
+105 105       2017-18 State of California                 GF
+106 106       2017-18 State of California                 GM
+107 107       2017-18 State of California                 RH
+108 108       2017-18 State of California                 RW
+109 109       2017-18 State of California                 SD
+110 110       2017-18 State of California                 SE
+111 111       2017-18 State of California                 SH
+112 112       2017-18 State of California                 SM
+113 113       2017-18 State of California                 SS
+114 114       2017-18 State of California                 TA
+115 115       2018-19     Greenfield High                 GF
+116 116       2018-19     Greenfield High                 GF
+117 117       2018-19     Greenfield High                 GM
+118 118       2018-19     Greenfield High                 GM
+119 119       2018-19     Greenfield High                 RH
+120 120       2018-19     Greenfield High                 RH
+121 121       2018-19     Greenfield High                 RW
+122 122       2018-19     Greenfield High                 RW
+123 123       2018-19     Greenfield High                 SD
+124 124       2018-19     Greenfield High                 SD
+125 125       2018-19     Greenfield High                 SE
+126 126       2018-19     Greenfield High                 SE
+127 127       2018-19     Greenfield High                 SH
+128 128       2018-19     Greenfield High                 SH
+129 129       2018-19     Greenfield High                 SM
+130 130       2018-19     Greenfield High                 SM
+131 131       2018-19     Greenfield High                 SS
+132 132       2018-19     Greenfield High                 SS
+133 133       2018-19 State of California                 GF
+134 134       2018-19 State of California                 GM
+135 135       2018-19 State of California                 RH
+136 136       2018-19 State of California                 RW
+137 137       2018-19 State of California                 SD
+138 138       2018-19 State of California                 SE
+139 139       2018-19 State of California                 SH
+140 140       2018-19 State of California                 SM
+141 141       2018-19     Greenfield High                 TA
+142 142       2018-19     Greenfield High                 TA
+143 143       2019-20     Greenfield High                 GF
+144 144       2019-20     Greenfield High                 GM
+145 145       2019-20     Greenfield High                 RH
+146 146       2019-20     Greenfield High                 RW
+147 147       2019-20     Greenfield High                 SD
+148 148       2019-20     Greenfield High                 SE
+149 149       2019-20     Greenfield High                 SH
+150 150       2019-20     Greenfield High                 SM
+151 151       2019-20     Greenfield High                 SS
+152 152       2019-20     Greenfield High                 TA
+153 153       2018-19 State of California                 SS
+154 154       2018-19 State of California                 TA
+155 155       2019-20 State of California                 GF
+156 156       2019-20 State of California                 GM
+157 157       2019-20 State of California                 RH
+158 158       2019-20 State of California                 RW
+159 159       2019-20 State of California                 SD
+160 160       2019-20 State of California                 SE
+161 161       2019-20 State of California                 SH
+162 162       2019-20 State of California                 SM
+163 163       2019-20 State of California                 SS
+164 164       2019-20 State of California                 TA
+                         definition suspension_rate_total
+1                            Female                   5.4
+2                              Male                  13.4
+3                Hispanic or Latino                   9.5
+4                             White                   5.6
+5                  English Learners                  13.4
+6                            Female                   3.3
+7                              Male                   8.0
+8                Hispanic or Latino                   6.1
+9                             White                   4.7
+10                 English Learners                   6.7
+11                            Total                   5.7
+12                           Female                   2.9
+13                             Male                   7.3
+14               Hispanic or Latino                   5.4
+15                            White                   4.2
+16                            Total                   9.5
+17                           Female                   6.7
+18                             Male                  22.5
+19               Hispanic or Latino                  14.9
+20                            White                  13.6
+21                 English Learners                  18.6
+22                            Total                  14.6
+23                           Female                   2.4
+24                             Male                   6.2
+25               Hispanic or Latino                   4.5
+26                           Female                   3.0
+27                             Male                  11.6
+28               Hispanic or Latino                   7.4
+29                            White                   8.3
+30                 English Learners                  10.1
+31                            Total                   7.3
+32                           Female                   2.1
+33                             Male                   5.4
+34               Hispanic or Latino                   3.8
+35                            White                   3.2
+36                 English Learners                   3.3
+37                         Homeless                   6.0
+38                          Migrant                   4.3
+39  Socioeconomically Disadvantaged                   4.9
+40                            Total                   3.8
+41                 English Learners                   5.8
+42                            Total                   5.2
+43                           Female                   4.5
+44                             Male                  14.7
+45               Hispanic or Latino                   9.8
+46                            White                   8.7
+47                 English Learners                  14.1
+48                         Homeless                  13.7
+49                          Migrant                   5.2
+50  Socioeconomically Disadvantaged                   9.8
+51                            Total                   9.7
+52                           Female                   2.0
+53                             Male                   5.2
+54               Hispanic or Latino                   3.7
+55                            White                   3.1
+56       Students with Disabilities                   7.4
+57                 English Learners                   3.1
+58                         Homeless                   5.9
+59                            White                   3.6
+60                 English Learners                   3.6
+61                            Total                   4.3
+62                           Female                   4.9
+63                             Male                  15.3
+64               Hispanic or Latino                  10.2
+65                            White                  12.5
+66       Students with Disabilities                  11.4
+67                 English Learners                  14.5
+68                         Homeless                  12.4
+69                          Migrant                   8.2
+70  Socioeconomically Disadvantaged                  11.2
+71                            Total                  10.3
+72                          Migrant                   4.1
+73  Socioeconomically Disadvantaged                   4.7
+74                            Total                   3.7
+75                           Female                   2.0
+76                             Male                   5.2
+77               Hispanic or Latino                   3.7
+78                            White                   3.2
+79       Students with Disabilities                   7.1
+80                 English Learners                   3.1
+81                         Homeless                   5.8
+82                          Migrant                   4.0
+83  Socioeconomically Disadvantaged                   4.7
+84                            Total                   3.6
+85                           Female                   8.7
+86                             Male                  24.7
+87               Hispanic or Latino                  16.9
+88                            White                  16.7
+89       Students with Disabilities                  32.5
+90                 English Learners                  23.7
+91                         Homeless                  13.6
+92                          Migrant                  13.2
+93  Socioeconomically Disadvantaged                  17.3
+94                            Total                  16.8
+95                           Female                  13.2
+96                             Male                  29.2
+97               Hispanic or Latino                  21.7
+98                            White                  13.6
+99       Students with Disabilities                  29.1
+100                English Learners                  24.4
+101                        Homeless                  28.1
+102                         Migrant                  18.6
+103 Socioeconomically Disadvantaged                  22.1
+104                           Total                  21.5
+105                          Female                   2.0
+106                            Male                   5.0
+107              Hispanic or Latino                   3.6
+108                           White                   3.0
+109      Students with Disabilities                   6.8
+110                English Learners                   3.0
+111                        Homeless                   5.6
+112                         Migrant                   4.0
+113 Socioeconomically Disadvantaged                   4.4
+114                           Total                   3.5
+115                          Female                  10.8
+116                          Female                  10.8
+117                            Male                  28.3
+118                            Male                  28.3
+119              Hispanic or Latino                  19.7
+120              Hispanic or Latino                  19.7
+121                           White                  15.8
+122                           White                  15.8
+123      Students with Disabilities                  31.7
+124      Students with Disabilities                  31.7
+125                English Learners                  28.0
+126                English Learners                  28.0
+127                        Homeless                  30.0
+128                        Homeless                  30.0
+129                         Migrant                  17.0
+130                         Migrant                  17.0
+131 Socioeconomically Disadvantaged                  20.6
+132 Socioeconomically Disadvantaged                  20.6
+133                          Female                   2.0
+134                            Male                   4.8
+135              Hispanic or Latino                   3.6
+136                           White                   3.0
+137      Students with Disabilities                   6.4
+138                English Learners                   3.2
+139                        Homeless                   6.3
+140                         Migrant                   4.0
+141                           Total                  19.6
+142                           Total                  19.6
+143                          Female                   9.9
+144                            Male                  15.3
+145              Hispanic or Latino                  12.9
+146                           White                   0.0
+147      Students with Disabilities                  25.6
+148                English Learners                  21.1
+149                        Homeless                  18.7
+150                         Migrant                  15.0
+151 Socioeconomically Disadvantaged                  13.1
+152                           Total                  12.7
+153 Socioeconomically Disadvantaged                   4.4
+154                           Total                   3.5
+155                          Female                   1.4
+156                            Male                   3.4
+157              Hispanic or Latino                   2.5
+158                           White                   2.0
+159      Students with Disabilities                   4.9
+160                English Learners                   2.4
+161                        Homeless                   4.7
+162                         Migrant                   2.8
+163 Socioeconomically Disadvantaged                   3.2
+164                           Total                   2.5
+```
+]
+
+---
+count: false
+ 
+
+.panel1-facet-auto[
+
+```r
+susp.green %&gt;%
+* ggplot( )
+```
+]
+ 
+.panel2-facet-auto[
+![](minimal-flipbook_files/figure-html/facet_auto_02_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-facet-auto[
+
+```r
+susp.green %&gt;%
+  ggplot( ) +
+* aes(x = academic_year)
+```
+]
+ 
+.panel2-facet-auto[
+![](minimal-flipbook_files/figure-html/facet_auto_03_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-facet-auto[
+
+```r
+susp.green %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+* aes(y = as.numeric( suspension_rate_total)/100)
+```
+]
+ 
+.panel2-facet-auto[
+![](minimal-flipbook_files/figure-html/facet_auto_04_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-facet-auto[
+
+```r
+susp.green %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+* geom_line( show.legend = FALSE )
+```
+]
+ 
+.panel2-facet-auto[
+![](minimal-flipbook_files/figure-html/facet_auto_05_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-facet-auto[
+
+```r
+susp.green %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_line( show.legend = FALSE ) +
+* aes(group = school_name)
+```
+]
+ 
+.panel2-facet-auto[
+![](minimal-flipbook_files/figure-html/facet_auto_06_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-facet-auto[
+
+```r
+susp.green %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_line( show.legend = FALSE ) +
+  aes(group = school_name) +
+* aes(color = school_name)
+```
+]
+ 
+.panel2-facet-auto[
+![](minimal-flipbook_files/figure-html/facet_auto_07_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-facet-auto[
+
+```r
+susp.green %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_line( show.legend = FALSE ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+* aes(size = 0.75)
+```
+]
+ 
+.panel2-facet-auto[
+![](minimal-flipbook_files/figure-html/facet_auto_08_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-facet-auto[
+
+```r
+susp.green %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_line( show.legend = FALSE ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+  aes(size = 0.75) +
+* scale_size_identity()
+```
+]
+ 
+.panel2-facet-auto[
+![](minimal-flipbook_files/figure-html/facet_auto_09_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-facet-auto[
+
+```r
+susp.green %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_line( show.legend = FALSE ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+  aes(size = 0.75) +
+  scale_size_identity() +
+* facet_wrap(~definition, ncol = 3)
+```
+]
+ 
+.panel2-facet-auto[
+![](minimal-flipbook_files/figure-html/facet_auto_10_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-facet-auto[
+
+```r
+susp.green %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_line( show.legend = FALSE ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+  aes(size = 0.75) +
+  scale_size_identity() +
+  facet_wrap(~definition, ncol = 3) +
+* scale_color_manual(values =  c("#000000",  "#CC79A7"))
+```
+]
+ 
+.panel2-facet-auto[
+![](minimal-flipbook_files/figure-html/facet_auto_11_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-facet-auto[
+
+```r
+susp.green %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_line( show.legend = FALSE ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+  aes(size = 0.75) +
+  scale_size_identity() +
+  facet_wrap(~definition, ncol = 3) +
+  scale_color_manual(values =  c("#000000",  "#CC79A7")) +
+* scale_y_continuous(labels = scales::label_percent(1)    )
+```
+]
+ 
+.panel2-facet-auto[
+![](minimal-flipbook_files/figure-html/facet_auto_12_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-facet-auto[
+
+```r
+susp.green %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_line( show.legend = FALSE ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+  aes(size = 0.75) +
+  scale_size_identity() +
+  facet_wrap(~definition, ncol = 3) +
+  scale_color_manual(values =  c("#000000",  "#CC79A7")) +
+  scale_y_continuous(labels = scales::label_percent(1)    ) +
+* labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time")
+```
+]
+ 
+.panel2-facet-auto[
+![](minimal-flipbook_files/figure-html/facet_auto_13_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-facet-auto[
+
+```r
+susp.green %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_line( show.legend = FALSE ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+  aes(size = 0.75) +
+  scale_size_identity() +
+  facet_wrap(~definition, ncol = 3) +
+  scale_color_manual(values =  c("#000000",  "#CC79A7")) +
+  scale_y_continuous(labels = scales::label_percent(1)    ) +
+  labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
+* labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp")
+```
+]
+ 
+.panel2-facet-auto[
+![](minimal-flipbook_files/figure-html/facet_auto_14_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-facet-auto[
+
+```r
+susp.green %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_line( show.legend = FALSE ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+  aes(size = 0.75) +
+  scale_size_identity() +
+  facet_wrap(~definition, ncol = 3) +
+  scale_color_manual(values =  c("#000000",  "#CC79A7")) +
+  scale_y_continuous(labels = scales::label_percent(1)    ) +
+  labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
+  labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") +
+* labs(color = "")
+```
+]
+ 
+.panel2-facet-auto[
+![](minimal-flipbook_files/figure-html/facet_auto_15_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-facet-auto[
+
+```r
+susp.green %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_line( show.legend = FALSE ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+  aes(size = 0.75) +
+  scale_size_identity() +
+  facet_wrap(~definition, ncol = 3) +
+  scale_color_manual(values =  c("#000000",  "#CC79A7")) +
+  scale_y_continuous(labels = scales::label_percent(1)    ) +
+  labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
+  labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") +
+  labs(color = "") +
+* labs(col = "")
+```
+]
+ 
+.panel2-facet-auto[
+![](minimal-flipbook_files/figure-html/facet_auto_16_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-facet-auto[
+
+```r
+susp.green %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_line( show.legend = FALSE ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+  aes(size = 0.75) +
+  scale_size_identity() +
+  facet_wrap(~definition, ncol = 3) +
+  scale_color_manual(values =  c("#000000",  "#CC79A7")) +
+  scale_y_continuous(labels = scales::label_percent(1)    ) +
+  labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
+  labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") +
+  labs(color = "") +
+  labs(col = "") +
+* labs(x = "Academic Year")
+```
+]
+ 
+.panel2-facet-auto[
+![](minimal-flipbook_files/figure-html/facet_auto_17_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-facet-auto[
+
+```r
+susp.green %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_line( show.legend = FALSE ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+  aes(size = 0.75) +
+  scale_size_identity() +
+  facet_wrap(~definition, ncol = 3) +
+  scale_color_manual(values =  c("#000000",  "#CC79A7")) +
+  scale_y_continuous(labels = scales::label_percent(1)    ) +
+  labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
+  labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") +
+  labs(color = "") +
+  labs(col = "") +
+  labs(x = "Academic Year") +
+* labs(y = "Suspension Rate")
+```
+]
+ 
+.panel2-facet-auto[
+![](minimal-flipbook_files/figure-html/facet_auto_18_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-facet-auto[
+
+```r
+susp.green %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_line( show.legend = FALSE ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+  aes(size = 0.75) +
+  scale_size_identity() +
+  facet_wrap(~definition, ncol = 3) +
+  scale_color_manual(values =  c("#000000",  "#CC79A7")) +
+  scale_y_continuous(labels = scales::label_percent(1)    ) +
+  labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
+  labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") +
+  labs(color = "") +
+  labs(col = "") +
+  labs(x = "Academic Year") +
+  labs(y = "Suspension Rate") +
+* theme_hc()
+```
+]
+ 
+.panel2-facet-auto[
+![](minimal-flipbook_files/figure-html/facet_auto_19_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-facet-auto[
+
+```r
+susp.green %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_line( show.legend = FALSE ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+  aes(size = 0.75) +
+  scale_size_identity() +
+  facet_wrap(~definition, ncol = 3) +
+  scale_color_manual(values =  c("#000000",  "#CC79A7")) +
+  scale_y_continuous(labels = scales::label_percent(1)    ) +
+  labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
+  labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") +
+  labs(color = "") +
+  labs(col = "") +
+  labs(x = "Academic Year") +
+  labs(y = "Suspension Rate") +
+  theme_hc()
+```
+]
+ 
+.panel2-facet-auto[
+![](minimal-flipbook_files/figure-html/facet_auto_20_output-1.png)&lt;!-- --&gt;
+]
+
+&lt;style&gt;
+.panel1-facet-auto {
+  color: black;
+  width: 38.6060606060606%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-facet-auto {
+  color: black;
+  width: 59.3939393939394%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-facet-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
+
+
+--- 
+
+
+https://www.r-graph-gallery.com/
+
+---
+
+
+
+http://experception.net/Franconeri_ExperCeptionDotNet_DataVisQuickRef.pdf
+
+
+
+---
+
+Kieran Healy's Data Visualization: A practical introduction
+https://socviz.co/index.html#preface
+
+Hadley Wickham's ggplot2:  Elegant Gaphics for Data Analysis
+https://ggplot2-book.org/index.html
+
+Many others:
+https://bookdown.org/home/tags/visualization/
+
+---
+
+
+https://stephanieevergreen.com/data-visualization-checklist/
+
+
+
+---
+
+# Notes: 
+
+- xaringan/remark.js slideshows are not self contained, single file slide shows.  Make sure you ship all the associated files that are created to display your flipbooks/slideshows.  I like to push .html and associated files to github repository and use Github Pages to host for beyond local sharing. :-)
+
+
+&gt; **The flipbooked portion of this presentation was created with the {flipbookr} package.  Get it at remotes::install_github("EvaMaeRey/flipbookr")**
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

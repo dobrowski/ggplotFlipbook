@@ -1,0 +1,229 @@
+---
+title: "Demonstration of using ggplot"
+subtitle: "Why I never use Excel anymore"
+author: "David Dobrowski"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, hygge, ninjutsu]
+    nature:
+      ratio: 16:9
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+```{r, include = F}
+# This is the recommended set up for flipbooks
+# you might think about setting cache to TRUE as you gain practice --- building flipbooks from scratch can be time consuming
+knitr::opts_chunk$set(fig.width = 6, message = FALSE, warning = FALSE, comment = "", cache = F)
+library(flipbookr)
+library(tidyverse)
+library(here)
+library(ggthemes)
+library(glue)
+library(ggrepel)
+
+
+susp.green <- read.csv("Greenfield Suspension data.csv")
+
+caaspp <- read.csv("CAASPP_5th_grade.csv")  %>%
+    mutate(Percentage_Standard_Met_and_Above = as.numeric(Percentage_Standard_Met_and_Above),
+           Mean_Scale_Score = as.numeric(Mean_Scale_Score),
+           Total_CAASPP_Enrollment = as.numeric(Total_CAASPP_Enrollment),
+           Percentage_Standard_Exceeded = 
+             as.numeric(Percentage_Standard_Exceeded),
+           Percentage_Standard_Met = 
+             as.numeric(Percentage_Standard_Met),
+           Percentage_Standard_Nearly_Met = 
+             as.numeric(Percentage_Standard_Nearly_Met)) %>%
+    filter(!is.na(Mean_Scale_Score),
+           !is.na(Percentage_Standard_Met_and_Above),
+           County_Code %in% c("01","02","03","04","05","06"))
+
+```
+
+
+
+
+---
+name: poppies
+class: inverse, middle, center
+background-image: url(img/laurentiu-iordache-qstGMhWuORE-unsplash.jpg)
+background-size: cover 
+
+
+---
+# First up: classic flipbook, using defaults to walk through code pipeline
+
+
+
+
+---
+
+https://www.autodesk.com/research/publications/same-stats-different-graphs
+
+
+
+
+
+---
+
+# Principle of Proportional Ink
+
+--
+The sizes of shaded areas in a visualization need to be proportional to the data values they represent.
+
+--
+Eliminate clutter
+
+--
+
+Focus attention
+
+
+---
+
+data + aesthetics + geom 
+
+
+---
+
+
+`r chunk_reveal("intro")`
+
+```{r intro, include = FALSE}
+
+# New data source for schools 
+
+caaspp %>%
+ggplot() +
+  aes(y = Percentage_Standard_Exceeded) +
+  aes(x = Percentage_Standard_Not_Met)  +
+  geom_point() +
+  aes(shape = County_Code )
+
+
+```
+
+
+---
+
+
+
+---
+
+`r chunk_reveal("bar")`
+
+```{r bar, include = FALSE}
+
+
+susp.green %>%
+  filter(reporting_category == "TA") %>%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_col(position = "dodge" ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+  aes(fill = school_name) +
+    labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
+    labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp")
+
+```
+
+
+
+
+---
+
+`r chunk_reveal("first")`
+
+```{r first, include = FALSE}
+
+
+susp.green %>%
+  filter(reporting_category == "TA") %>%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_line( ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+    labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
+    labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp")
+
+```
+
+
+
+---
+
+`r chunk_reveal("facet")`
+
+```{r facet, include = FALSE}
+
+
+susp.green %>%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_line( show.legend = FALSE ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+  aes(size = 0.75) +
+  scale_size_identity() +
+  facet_wrap(~definition, ncol = 3) +
+  scale_color_manual(values =  c("#000000",  "#CC79A7")) +
+  scale_y_continuous(labels = scales::label_percent(1)    ) +
+  labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
+  labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") +
+  labs(color = "") +
+  labs(col = "") +
+  labs(x = "Academic Year") + 
+  labs(y = "Suspension Rate") +
+  theme_hc()
+
+```
+
+
+--- 
+
+
+https://www.r-graph-gallery.com/
+
+---
+
+
+
+http://experception.net/Franconeri_ExperCeptionDotNet_DataVisQuickRef.pdf
+
+
+
+---
+
+Kieran Healy's Data Visualization: A practical introduction
+https://socviz.co/index.html#preface
+
+Hadley Wickham's ggplot2:  Elegant Gaphics for Data Analysis
+https://ggplot2-book.org/index.html
+
+Many others:
+https://bookdown.org/home/tags/visualization/
+
+---
+
+
+https://stephanieevergreen.com/data-visualization-checklist/
+
+
+
+---
+
+# Notes: 
+
+- xaringan/remark.js slideshows are not self contained, single file slide shows.  Make sure you ship all the associated files that are created to display your flipbooks/slideshows.  I like to push .html and associated files to github repository and use Github Pages to host for beyond local sharing. :-)
+
+
+> **The flipbooked portion of this presentation was created with the {flipbookr} package.  Get it at remotes::install_github("EvaMaeRey/flipbookr")**
