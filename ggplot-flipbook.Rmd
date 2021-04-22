@@ -18,7 +18,7 @@ output:
 ```{r, include = F}
 # This is the recommended set up for flipbooks
 # you might think about setting cache to TRUE as you gain practice --- building flipbooks from scratch can be time consuming
-knitr::opts_chunk$set(fig.width = 6, message = FALSE, warning = FALSE, comment = "", cache = F)
+knitr::opts_chunk$set(fig.width = 6, message = FALSE, warning = FALSE, comment = "", cache = T)
 library(flipbookr)
 library(tidyverse)
 library(here)
@@ -48,7 +48,6 @@ caaspp <- read.csv("CAASPP_5th_grade.csv")  %>%
 ```
 
 
-
 name: poppies
 class: inverse, middle, bottom
 background-image: url(img/laurentiu-iordache-qstGMhWuORE-unsplash.jpg)
@@ -61,7 +60,7 @@ background-size: cover
 
 class: inverse, middle, center
 
-```{r  out.width = '45%' , echo=FALSE}
+```{r  out.width = '40%' , echo=FALSE}
 knitr::include_graphics("img/BarbaraKrugerWhyAreYourHere.jpeg")
 
 ```
@@ -201,6 +200,8 @@ https://socviz.co/index.html
 
 
 ---
+
+## Basic Dot Plot
 
 `r chunk_reveal("intro")`
 
