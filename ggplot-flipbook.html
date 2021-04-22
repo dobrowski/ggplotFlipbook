@@ -29,6 +29,19 @@ background-size: cover
 
 class: inverse, middle, center
 
+# References for today
+
+### Slides: https://ggplot-flipbook.netlify.app/ggplot-flipbook.html 
+
+&lt;img src="img/qrcode.png" width="20%" /&gt;
+
+### Github repo: https://github.com/dobrowski/ggplotFlipbook
+
+
+---
+
+class: inverse, middle, center
+
 &lt;img src="img/BarbaraKrugerWhyAreYourHere.jpeg" width="40%" /&gt;
 
 .right[
@@ -154,8 +167,6 @@ https://socviz.co/index.html
 
 
 ---
-
-## Basic Dot Plot
 
 count: false
  
@@ -1071,6 +1082,36 @@ ggplot() +
 
 
 
+---
+
+# Components of a graph
+
+
+--
+.left[
+### data 
+]
+--
+.right[
+### CAASPP Data 
+]
+--
+.left[
+### aesthetics
+]
+--
+.right[
+### Which variables are x, y, color, shape, size, etc.
+]
+--
+.left[
+### geom
+]
+--
+.right[
+### A scatter plot 
+]
+
 
 ---
 
@@ -1684,12 +1725,39 @@ susp.green %&gt;%
   aes(color = school_name) +
   aes(fill = school_name) +
     labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
-    labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp")
+    labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") +
+* theme(legend.position = "bottom")
 ```
 ]
  
 .panel2-bar-auto[
 ![](ggplot-flipbook_files/figure-html/bar_auto_12_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-bar-auto[
+
+```r
+susp.green %&gt;%
+  filter(reporting_category == "TA") %&gt;%
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_col(position = "dodge" ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+  aes(fill = school_name) +
+    labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
+    labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") +
+  theme(legend.position = "bottom")
+```
+]
+ 
+.panel2-bar-auto[
+![](ggplot-flipbook_files/figure-html/bar_auto_13_output-1.png)&lt;!-- --&gt;
 ]
 
 &lt;style&gt;
@@ -3179,11 +3247,9 @@ class: middle, center
 
 
 ---
+class: inverse
 
 # Notes: 
-
-- xaringan/remark.js slideshows are not self contained, single file slide shows.  Make sure you ship all the associated files that are created to display your flipbooks/slideshows.  I like to push .html and associated files to github repository and use Github Pages to host for beyond local sharing. :-)
-
 
 &gt; **The flipbooked portion of this presentation was created with the {flipbookr} package.  Get it at remotes::install_github("EvaMaeRey/flipbookr")**
 

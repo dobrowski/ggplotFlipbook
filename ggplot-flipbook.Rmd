@@ -60,6 +60,22 @@ background-size: cover
 
 class: inverse, middle, center
 
+# References for today
+
+### Slides: https://ggplot-flipbook.netlify.app/ggplot-flipbook.html 
+
+```{r  out.width = '20%' , echo=FALSE}
+knitr::include_graphics("img/qrcode.png")
+
+```
+
+### Github repo: https://github.com/dobrowski/ggplotFlipbook
+
+
+---
+
+class: inverse, middle, center
+
 ```{r  out.width = '40%' , echo=FALSE}
 knitr::include_graphics("img/BarbaraKrugerWhyAreYourHere.jpeg")
 
@@ -201,8 +217,6 @@ https://socviz.co/index.html
 
 ---
 
-## Basic Dot Plot
-
 `r chunk_reveal("intro")`
 
 ```{r intro, include = FALSE}
@@ -224,6 +238,36 @@ ggplot() +
 ```
 
 
+---
+
+# Components of a graph
+
+
+--
+.left[
+### data 
+]
+--
+.right[
+### CAASPP Data 
+]
+--
+.left[
+### aesthetics
+]
+--
+.right[
+### Which variables are x, y, color, shape, size, etc.
+]
+--
+.left[
+### geom
+]
+--
+.right[
+### A scatter plot 
+]
+
 
 ---
 
@@ -242,7 +286,8 @@ susp.green %>%
   aes(color = school_name) +
   aes(fill = school_name) +
     labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
-    labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp")
+    labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") +
+  theme(legend.position = "bottom") 
 
 ```
 
@@ -398,11 +443,9 @@ knitr::include_graphics("img/learn_unlearn_relearn.jpeg")
 
 
 ---
+class: inverse
 
 # Notes: 
-
-- xaringan/remark.js slideshows are not self contained, single file slide shows.  Make sure you ship all the associated files that are created to display your flipbooks/slideshows.  I like to push .html and associated files to github repository and use Github Pages to host for beyond local sharing. :-)
-
 
 > **The flipbooked portion of this presentation was created with the {flipbookr} package.  Get it at remotes::install_github("EvaMaeRey/flipbookr")**
 
