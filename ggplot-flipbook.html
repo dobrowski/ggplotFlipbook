@@ -25,10 +25,28 @@ background-size: cover
 # Demonstration Using ggplot
 ### VISUALIZATION PRINCIPLES IN PRACTICE
 .large[David Dobrowski | Education Data Science Conference | 6 May 2021]
+
+???
+
+David Dobrowski
+
+Monterey County Office of Education
+
+Director of Data Research and Partnerships
+
+
+Welcome
+
+c - clone
+p - presenter mode
+t - timer
+
+
+
 ---
 
 class: inverse, middle, center
-
+name: title
 # References for today
 
 ### Slides: https://ggplot-flipbook.netlify.app/ggplot-flipbook.html 
@@ -36,6 +54,10 @@ class: inverse, middle, center
 &lt;img src="img/qrcode.png" width="20%" /&gt;
 
 ### Github repo: https://github.com/dobrowski/ggplotFlipbook
+
+???
+
+how to find these slides and github repo to play along at home
 
 
 ---
@@ -48,6 +70,16 @@ class: inverse, middle, center
 .small[Barbara Kruger]
 ]
 
+???
+
+Poll - how familiar are you with R and ggplot? 
+- Just stayed from the last session and don't feel like moving
+- Have dabbled but it isn't my go to tool
+- I've led this presentation before
+
+In chat, please write a question or something you hope to get out of today.  
+
+
 ---
 # Reasons Why to Graph Data
 
@@ -58,6 +90,11 @@ class: inverse, middle, center
 --
 
 &lt;img src="img/picture-superiority-effect.jpeg" width="100%" /&gt;
+
+
+???
+
+Studies have shown that people remember things better when given a picture in addition to text or numbers
 
 
 ---
@@ -73,6 +110,11 @@ class: inverse, middle, center
 .right[
 .small[https://www.autodesk.com/research/publications/same-stats-different-graphs]
 ]]
+
+
+???
+
+Displaying visually allows use to see patterns we wouldn't neccesarily get from summary statistics
 
 
 ---
@@ -100,6 +142,9 @@ class: inverse, middle, center
 
 ## geom 
 
+???
+
+These are the three components to creating a graph in ggplot, and arguable the grammar of graphing in any way even if not explicitly laid out.
 
 
 ---
@@ -153,6 +198,11 @@ https://socviz.co/index.html
 ]
 
 
+???
+
+These are building block of constructing a graph. Different ways to encode meaning, variables and data into geometric features. 
+
+
 ---
 class: middle, center
 
@@ -167,6 +217,8 @@ https://socviz.co/index.html
 
 
 ---
+
+name: scatter
 
 count: false
  
@@ -1016,7 +1068,7 @@ ggplot() +
   aes(color = County_Code ) +
   aes(size = Students_Tested) +
   aes(alpha = Percentage_Standard_Met_and_Above) +
-* theme(legend.position = "none")
+* aes(color = Mean_Scale_Score)
 ```
 ]
  
@@ -1042,12 +1094,40 @@ ggplot() +
   aes(color = County_Code ) +
   aes(size = Students_Tested) +
   aes(alpha = Percentage_Standard_Met_and_Above) +
-  theme(legend.position = "none")
+  aes(color = Mean_Scale_Score) +
+* theme(legend.position = "none")
 ```
 ]
  
 .panel2-intro-auto[
 ![](ggplot-flipbook_files/figure-html/intro_auto_11_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-intro-auto[
+
+```r
+# Comparing Percent Exceeded and Scale Score
+
+caaspp %&gt;%
+ggplot() +
+  aes(y = Percentage_Standard_Exceeded) +
+  aes(x = Mean_Scale_Score)  +
+  geom_point() +
+  aes(shape = County_Code ) +
+  aes(color = County_Code ) +
+  aes(size = Students_Tested) +
+  aes(alpha = Percentage_Standard_Met_and_Above) +
+  aes(color = Mean_Scale_Score) +
+  theme(legend.position = "none")
+```
+]
+ 
+.panel2-intro-auto[
+![](ggplot-flipbook_files/figure-html/intro_auto_12_output-1.png)&lt;!-- --&gt;
 ]
 
 &lt;style&gt;
@@ -1113,7 +1193,13 @@ ggplot() +
 ]
 
 
+???
+
+We can go back to those there components that we discussed earlier and see how they were actualized in the graph we just made.  
+
 ---
+
+name:barchart
 
 count: false
  
@@ -1811,6 +1897,8 @@ susp.green %&gt;%
 
 ---
 
+name: line
+
 count: false
  
 
@@ -2452,7 +2540,16 @@ susp.green %&gt;%
 - Others can reproduce your steps
 
 
+???
+
+Image you made a graph that you liked.  Now imagine you have to do it for every school in your district or every school in the county.  Now for superintendent wants you to change the blue to light blue on every graph.  Now your colleague in San Diego wants to have it done for all of their schools.  
+
+This is the power of using code to create the graphs and adaptability of ggplot. 
+
+
 ---
+
+name: facet
 
 count: false
  

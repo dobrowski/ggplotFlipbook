@@ -56,10 +56,28 @@ background-size: cover
 # Demonstration Using ggplot
 ### VISUALIZATION PRINCIPLES IN PRACTICE
 .large[David Dobrowski | Education Data Science Conference | 6 May 2021]
+
+???
+
+David Dobrowski
+
+Monterey County Office of Education
+
+Director of Data Research and Partnerships
+
+
+Welcome
+
+c - clone
+p - presenter mode
+t - timer
+
+
+
 ---
 
 class: inverse, middle, center
-
+name: title
 # References for today
 
 ### Slides: https://ggplot-flipbook.netlify.app/ggplot-flipbook.html 
@@ -70,6 +88,10 @@ knitr::include_graphics("img/qrcode.png")
 ```
 
 ### Github repo: https://github.com/dobrowski/ggplotFlipbook
+
+???
+
+how to find these slides and github repo to play along at home
 
 
 ---
@@ -85,6 +107,16 @@ knitr::include_graphics("img/BarbaraKrugerWhyAreYourHere.jpeg")
 .small[Barbara Kruger]
 ]
 
+???
+
+Poll - how familiar are you with R and ggplot? 
+- Just stayed from the last session and don't feel like moving
+- Have dabbled but it isn't my go to tool
+- I've led this presentation before
+
+In chat, please write a question or something you hope to get out of today.  
+
+
 ---
 # Reasons Why to Graph Data
 
@@ -98,6 +130,11 @@ knitr::include_graphics("img/BarbaraKrugerWhyAreYourHere.jpeg")
 knitr::include_graphics("img/picture-superiority-effect.jpeg")
 
 ```
+
+
+???
+
+Studies have shown that people remember things better when given a picture in addition to text or numbers
 
 
 ---
@@ -115,6 +152,11 @@ knitr::include_graphics("img/DinoSequentialSmaller.gif")
 .right[
 .small[https://www.autodesk.com/research/publications/same-stats-different-graphs]
 ]]
+
+
+???
+
+Displaying visually allows use to see patterns we wouldn't neccesarily get from summary statistics
 
 
 ---
@@ -142,6 +184,9 @@ knitr::include_graphics("img/DinoSequentialSmaller.gif")
 
 ## geom 
 
+???
+
+These are the three components to creating a graph in ggplot, and arguable the grammar of graphing in any way even if not explicitly laid out.
 
 
 ---
@@ -199,6 +244,11 @@ https://socviz.co/index.html
 ]
 
 
+???
+
+These are building block of constructing a graph. Different ways to encode meaning, variables and data into geometric features. 
+
+
 ---
 class: middle, center
 
@@ -217,6 +267,8 @@ https://socviz.co/index.html
 
 ---
 
+name: scatter
+
 `r chunk_reveal("intro")`
 
 ```{r intro, include = FALSE}
@@ -232,6 +284,7 @@ ggplot() +
   aes(color = County_Code ) +
   aes(size = Students_Tested) +
   aes(alpha = Percentage_Standard_Met_and_Above) +
+  aes(color = Mean_Scale_Score) +
   theme(legend.position = "none") 
 
 
@@ -269,7 +322,13 @@ ggplot() +
 ]
 
 
+???
+
+We can go back to those there components that we discussed earlier and see how they were actualized in the graph we just made.  
+
 ---
+
+name:barchart
 
 `r chunk_reveal("bar")`
 
@@ -311,6 +370,8 @@ susp.green %>%
 
 ---
 
+name: line
+
 `r chunk_reveal("first")`
 
 ```{r first, include = FALSE}
@@ -347,7 +408,16 @@ susp.green %>%
 - Others can reproduce your steps
 
 
+???
+
+Image you made a graph that you liked.  Now imagine you have to do it for every school in your district or every school in the county.  Now for superintendent wants you to change the blue to light blue on every graph.  Now your colleague in San Diego wants to have it done for all of their schools.  
+
+This is the power of using code to create the graphs and adaptability of ggplot. 
+
+
 ---
+
+name: facet
 
 `r chunk_reveal("facet")`
 
