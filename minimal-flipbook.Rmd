@@ -6,6 +6,7 @@ output:
   xaringan::moon_reader:
     lib_dir: libs
     css: [default, hygge, ninjutsu]
+    seal: false
     nature:
       ratio: 16:9
       highlightStyle: github
@@ -29,7 +30,8 @@ library(ggrepel)
 susp.green <- read.csv("Greenfield Suspension data.csv")
 
 caaspp <- read.csv("CAASPP_5th_grade.csv")  %>%
-    mutate(Percentage_Standard_Met_and_Above = as.numeric(Percentage_Standard_Met_and_Above),
+    mutate(Students_Tested = as.numeric(Students_Tested),
+           Percentage_Standard_Met_and_Above = as.numeric(Percentage_Standard_Met_and_Above),
            Mean_Scale_Score = as.numeric(Mean_Scale_Score),
            Total_CAASPP_Enrollment = as.numeric(Total_CAASPP_Enrollment),
            Percentage_Standard_Exceeded = 
@@ -40,75 +42,185 @@ caaspp <- read.csv("CAASPP_5th_grade.csv")  %>%
              as.numeric(Percentage_Standard_Nearly_Met)) %>%
     filter(!is.na(Mean_Scale_Score),
            !is.na(Percentage_Standard_Met_and_Above),
-           County_Code %in% c("01","02","03","04","05","06"))
+           County_Code %in% c(1:6)) %>%
+  mutate(County_Code = as.character(County_Code))
 
 ```
 
 
 
-
----
 name: poppies
-class: inverse, middle, center
+class: inverse, middle, bottom
 background-image: url(img/laurentiu-iordache-qstGMhWuORE-unsplash.jpg)
 background-size: cover 
 
-
----
-# First up: classic flipbook, using defaults to walk through code pipeline
-
-
-
-
+# Demonstration Using ggplot
+### VISUALIZATION PRINCIPLES IN PRACTICE
+.large[David Dobrowski | Education Data Science Conference | 6 May 2021]
 ---
 
-https://www.autodesk.com/research/publications/same-stats-different-graphs
+class: inverse, middle, center
 
+```{r  out.width = '45%' , echo=FALSE}
+knitr::include_graphics("img/BarbaraKrugerWhyAreYourHere.jpeg")
 
+```
 
-
+.right[
+.small[Barbara Kruger]
+]
 
 ---
-
-# Principle of Proportional Ink
-
---
-The sizes of shaded areas in a visualization need to be proportional to the data values they represent.
-
---
-Eliminate clutter
+# Reasons Why to Graph Data
 
 --
 
-Focus attention
+.large[Picture Superiority Effect]
+
+--
+
+```{r  out.width = '100%' , echo=FALSE}
+knitr::include_graphics("img/picture-superiority-effect.jpeg")
+
+```
+
+
+---
+# Reasons Why to Graph Data
+
+.center[
+
+```{r dino, echo=FALSE}
+knitr::include_graphics("img/DinoSequentialSmaller.gif")
+```
+]
+
+
+.black[
+.right[
+.small[https://www.autodesk.com/research/publications/same-stats-different-graphs]
+]]
 
 
 ---
 
-data + aesthetics + geom 
+# Components of a graph
+
+
+--
+
+## data 
+
+--
+
+### + 
+
+--
+
+## aesthetics
+
+--
+
+### +
+
+--
+
+## geom 
+
 
 
 ---
 
+# Components of a graph
+
+
+--
+.left[
+### data - what you want to graph
+]
+--
+.right[
+### ggplot() +
+]
+--
+.left[
+### aesthetics - how the data elements are put into a graph
+]
+--
+.right[
+### aes() +
+]
+--
+.left[
+### geom - what geometric form of a graph you want
+]
+--
+.right[
+### geom_*  
+]
+
+
+
+---
+
+# Graphing Elements
+
+.pull-left[
+```{r out.width = '75%', echo=FALSE }
+knitr::include_graphics("img/ch-01-channels-for-cont-data-vertical1.png")
+```
+]
+.pull-right[
+```{r out.width = '75%' , echo=FALSE }
+knitr::include_graphics("img/ch-01-channels-for-cont-data-vertical2.png")
+```
+]
+
+
+.small[
+.right[
+https://socviz.co/index.html
+]
+]
+
+
+---
+class: middle, center
+
+
+```{r  out.width = '60%' , echo=FALSE}
+knitr::include_graphics("img/ch-01-channels-for-cat-data-vertical.png")
+
+```
+
+.small[
+.right[
+https://socviz.co/index.html
+]
+]
+
+
+---
 
 `r chunk_reveal("intro")`
 
 ```{r intro, include = FALSE}
 
-# New data source for schools 
+# Comparing Percent Exceeded and Scale Score
 
 caaspp %>%
 ggplot() +
   aes(y = Percentage_Standard_Exceeded) +
-  aes(x = Percentage_Standard_Not_Met)  +
+  aes(x = Mean_Scale_Score)  +
   geom_point() +
-  aes(shape = County_Code )
+  aes(shape = County_Code ) + 
+  aes(color = County_Code ) +
+  aes(size = Students_Tested) +
+  aes(alpha = Percentage_Standard_Met_and_Above) +
+  theme(legend.position = "none") 
 
 
 ```
-
-
----
 
 
 
@@ -134,6 +246,21 @@ susp.green %>%
 ```
 
 
+---
+
+# Principle of Proportional Ink
+
+--
+
+### The sizes of shaded areas in a visualization need to be proportional to the data values they represent.
+
+--
+
+### Eliminate clutter
+
+--
+
+### Focus attention
 
 
 ---
@@ -148,14 +275,30 @@ susp.green %>%
   ggplot( ) +
   aes(x = academic_year) +
   aes(y = as.numeric( suspension_rate_total)/100) +
-  geom_line( ) +
   aes(group = school_name) +
+  geom_line( ) +
   aes(color = school_name) +
     labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
     labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp")
 
 ```
 
+
+---
+
+# Ease of modifcation and expansion
+
+--
+
+- Can tweak individual parts easily
+
+--
+
+- When making multiple graphs, only need to make change in one place
+
+--
+
+- Others can reproduce your steps
 
 
 ---
@@ -169,18 +312,16 @@ susp.green %>%
   ggplot( ) +
   aes(x = academic_year) +
   aes(y = as.numeric( suspension_rate_total)/100) +
-  geom_line( show.legend = FALSE ) +
+  facet_wrap(~definition) +
   aes(group = school_name) +
+  geom_line( show.legend = FALSE ) +
   aes(color = school_name) +
-  aes(size = 0.75) +
-  scale_size_identity() +
-  facet_wrap(~definition, ncol = 3) +
-  scale_color_manual(values =  c("#000000",  "#CC79A7")) +
-  scale_y_continuous(labels = scales::label_percent(1)    ) +
+  scale_color_manual(
+    values =  c("#000000",  "#CC79A7")) +
+  scale_y_continuous(
+    labels = scales::label_percent(1)  ) +
   labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
   labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") +
-  labs(color = "") +
-  labs(col = "") +
   labs(x = "Academic Year") + 
   labs(y = "Suspension Rate") +
   theme_hc()
@@ -188,35 +329,71 @@ susp.green %>%
 ```
 
 
---- 
 
+---
+
+class: middle, center
+# Graph Chooser
+
+```{r  out.width = '50%' , echo=FALSE}
+knitr::include_graphics("img/chooser.png")
+
+```
+
+http://experception.net/Franconeri_ExperCeptionDotNet_DataVisQuickRef.pdf
+
+
+---
+
+class: middle, center
+# R Graph Gallery
+
+
+
+```{r  out.width = '50%' , echo=FALSE}
+knitr::include_graphics("img/gallery.png")
+
+```
 
 https://www.r-graph-gallery.com/
 
 ---
 
+# Book Resources
 
-
-http://experception.net/Franconeri_ExperCeptionDotNet_DataVisQuickRef.pdf
-
-
-
----
-
-Kieran Healy's Data Visualization: A practical introduction
+### Kieran Healy's Data Visualization: A practical introduction
 https://socviz.co/index.html#preface
 
-Hadley Wickham's ggplot2:  Elegant Gaphics for Data Analysis
+### Hadley Wickham's ggplot2:  Elegant Graphics for Data Analysis
 https://ggplot2-book.org/index.html
 
-Many others:
+### Many others:
 https://bookdown.org/home/tags/visualization/
 
 ---
 
+class: middle, center
+
+# Checklist 
+
+
+```{r  out.width = '100%' , echo=FALSE}
+knitr::include_graphics("img/checklist.png")
+
+```
 
 https://stephanieevergreen.com/data-visualization-checklist/
 
+
+
+---
+class: middle, center
+
+
+```{r  out.width = '60%' , echo=FALSE}
+knitr::include_graphics("img/learn_unlearn_relearn.jpeg")
+
+```
 
 
 ---
@@ -227,3 +404,7 @@ https://stephanieevergreen.com/data-visualization-checklist/
 
 
 > **The flipbooked portion of this presentation was created with the {flipbookr} package.  Get it at remotes::install_github("EvaMaeRey/flipbookr")**
+
+- In addition to creating flipbookr, Evangeline Reynolds inspired the approach to showing aspects of ggplot. https://evangelinereynolds.netlify.app/
+
+- The formating was learned and inspired from Allison Hill https://arm.rbind.io/slides/xaringan.html#1

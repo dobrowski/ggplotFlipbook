@@ -11,13 +11,6 @@
   </head>
   <body>
     <textarea id="source">
-class: center, middle, inverse, title-slide
-
-# Demonstration of using ggplot
-## Why I never use Excel anymore
-### David Dobrowski
-
----
 
 
 
@@ -25,50 +18,143 @@ class: center, middle, inverse, title-slide
 
 
 
-
----
 name: poppies
-class: inverse, middle, center
+class: inverse, middle, bottom
 background-image: url(img/laurentiu-iordache-qstGMhWuORE-unsplash.jpg)
 background-size: cover 
 
-
----
-# First up: classic flipbook, using defaults to walk through code pipeline
-
-
-
-
+# Demonstration Using ggplot
+### VISUALIZATION PRINCIPLES IN PRACTICE
+.large[David Dobrowski | Education Data Science Conference | 6 May 2021]
 ---
 
-https://www.autodesk.com/research/publications/same-stats-different-graphs
+class: inverse, middle, center
 
+&lt;img src="img/BarbaraKrugerWhyAreYourHere.jpeg" width="45%" /&gt;
 
-
-
+.right[
+.small[Barbara Kruger]
+]
 
 ---
-
-# Principle of Proportional Ink
-
---
-The sizes of shaded areas in a visualization need to be proportional to the data values they represent.
-
---
-Eliminate clutter
+# Reasons Why to Graph Data
 
 --
 
-Focus attention
+.large[Picture Superiority Effect]
+
+--
+
+&lt;img src="img/picture-superiority-effect.jpeg" width="100%" /&gt;
+
+
+---
+# Reasons Why to Graph Data
+
+.center[
+
+![](img/DinoSequentialSmaller.gif)&lt;!-- --&gt;
+]
+
+
+.black[
+.right[
+.small[https://www.autodesk.com/research/publications/same-stats-different-graphs]
+]]
 
 
 ---
 
-data + aesthetics + geom 
+# Components of a graph
+
+
+--
+
+## data 
+
+--
+
+### + 
+
+--
+
+## aesthetics
+
+--
+
+### +
+
+--
+
+## geom 
+
 
 
 ---
 
+# Components of a graph
+
+
+--
+.left[
+### data - what you want to graph
+]
+--
+.right[
+### ggplot() +
+]
+--
+.left[
+### aesthetics - how the data elements are put into a graph
+]
+--
+.right[
+### aes() +
+]
+--
+.left[
+### geom - what geometric form of a graph you want
+]
+--
+.right[
+### geom_*  
+]
+
+
+
+---
+
+# Graphing Elements
+
+.pull-left[
+&lt;img src="img/ch-01-channels-for-cont-data-vertical1.png" width="75%" /&gt;
+]
+.pull-right[
+&lt;img src="img/ch-01-channels-for-cont-data-vertical2.png" width="75%" /&gt;
+]
+
+
+.small[
+.right[
+https://socviz.co/index.html
+]
+]
+
+
+---
+class: middle, center
+
+
+&lt;img src="img/ch-01-channels-for-cat-data-vertical.png" width="60%" /&gt;
+
+.small[
+.right[
+https://socviz.co/index.html
+]
+]
+
+
+---
 
 count: false
  
@@ -76,7 +162,7 @@ count: false
 .panel1-intro-auto[
 
 ```r
-# New data source for schools
+# Comparing Percent Exceeded and Scale Score
 
 *caaspp
 ```
@@ -85,27 +171,646 @@ count: false
 .panel2-intro-auto[
 
 ```
- [1] id                                    County_Code                          
- [3] District_Code                         School_Code                          
- [5] Filler                                Test_Year                            
- [7] Subgroup_ID                           Test_Type                            
- [9] Total_CAASPP_Enrollment               Total_Tested_At_Entity_Level         
-[11] Total_Tested_at_Subgroup_Level        Grade                                
-[13] Test_Id                               CAASPP_Reported_Enrollment           
-[15] Students_Tested                       Mean_Scale_Score                     
-[17] Percentage_Standard_Exceeded          Percentage_Standard_Met              
-[19] Percentage_Standard_Met_and_Above     Percentage_Standard_Nearly_Met       
-[21] Percentage_Standard_Not_Met           Students_with_Scores                 
-[23] Area_1_Percentage_Above_Standard      Area_1_Percentage_At_or_Near_Standard
-[25] Area_1_Percentage_Below_Standard      Area_2_Percentage_Above_Standard     
-[27] Area_2_Percentage_At_or_Near_Standard Area_2_Percentage_Below_Standard     
-[29] Area_3_Percentage_Above_Standard      Area_3_Percentage_At_or_Near_Standard
-[31] Area_3_Percentage_Below_Standard      Area_4_Percentage_Above_Standard     
-[33] Area_4_Percentage_At_or_Near_Standard Area_4_Percentage_Below_Standard     
-[35] Total_Tested_with_Scores              Area_1_Percentage_Near_Standard      
-[37] Area_2_Percentage_Near_Standard       Area_3_Percentage_Near_Standard      
-[39] Area_4_Percentage_Near_Standard      
-&lt;0 rows&gt; (or 0-length row.names)
+                         id County_Code District_Code School_Code Filler
+1  sb_ca2019_all_csv_v4.txt           1         31617           0     NA
+2  sb_ca2019_all_csv_v4.txt           1         61119           0     NA
+3  sb_ca2019_all_csv_v4.txt           1         61192           0     NA
+4  sb_ca2019_all_csv_v4.txt           1         61200           0     NA
+5  sb_ca2019_all_csv_v4.txt           1         61259           0     NA
+6  sb_ca2019_all_csv_v4.txt           1         61275           0     NA
+7  sb_ca2019_all_csv_v4.txt           1         61291           0     NA
+8  sb_ca2019_all_csv_v4.txt           1         75101           0     NA
+9  sb_ca2019_all_csv_v4.txt           4         61408           0     NA
+10 sb_ca2019_all_csv_v4.txt           4         61424           0     NA
+11 sb_ca2019_all_csv_v4.txt           4         61549           0     NA
+12 sb_ca2019_all_csv_v4.txt           4         75507           0     NA
+13 sb_ca2019_all_csv_v4.txt           6         61614           0     NA
+14 sb_ca2019_all_csv_v4.txt           6         61622           0     NA
+15 sb_ca2019_all_csv_v4.txt           1         61168           0     NA
+16 sb_ca2019_all_csv_v4.txt           1         61176           0     NA
+17 sb_ca2019_all_csv_v4.txt           1         61234           0     NA
+18 sb_ca2019_all_csv_v4.txt           1         61309           0     NA
+19 sb_ca2019_all_csv_v4.txt           1         75119           0     NA
+20 sb_ca2019_all_csv_v4.txt           2         61333           0     NA
+21 sb_ca2019_all_csv_v4.txt           4         61523           0     NA
+22 sb_ca2019_all_csv_v4.txt           6         61598           0     NA
+23 sb_ca2019_all_csv_v4.txt           6         61606           0     NA
+24 sb_ca2019_all_csv_v4.txt           1         61127           0     NA
+25 sb_ca2019_all_csv_v4.txt           1         61143           0     NA
+26 sb_ca2019_all_csv_v4.txt           1         61242           0     NA
+27 sb_ca2019_all_csv_v4.txt           3         10033           0     NA
+28 sb_ca2019_all_csv_v4.txt           3         73981           0     NA
+29 sb_ca2019_all_csv_v4.txt           4         61432           0     NA
+30 sb_ca2019_all_csv_v4.txt           5         10058           0     NA
+31 sb_ca2019_all_csv_v4.txt           5         61564           0     NA
+32 sb_ca2019_all_csv_v4.txt           1         61150           0     NA
+33 sb_ca2019_all_csv_v4.txt           1         75093           0     NA
+34 sb_ca2019_all_csv_v4.txt           4         10041           0     NA
+35 sb_ca2019_all_csv_v4.txt           4         61382           0     NA
+36 sb_ca2019_all_csv_v4.txt           4         61499           0     NA
+37 sb_ca2019_all_csv_v4.txt           4         61507           0     NA
+38 sb_ca2019_all_csv_v4.txt           5         61572           0     NA
+39 sb_ca2019_all_csv_v4.txt           5         61580           0     NA
+   Test_Year Subgroup_ID Test_Type Total_CAASPP_Enrollment
+1       2019           1         B                      NA
+2       2019           1         B                      NA
+3       2019           1         B                      NA
+4       2019           1         B                      NA
+5       2019           1         B                      NA
+6       2019           1         B                      NA
+7       2019           1         B                      NA
+8       2019           1         B                      NA
+9       2019           1         B                      NA
+10      2019           1         B                      NA
+11      2019           1         B                      NA
+12      2019           1         B                      NA
+13      2019           1         B                      NA
+14      2019           1         B                      NA
+15      2019           1         B                      NA
+16      2019           1         B                      NA
+17      2019           1         B                      NA
+18      2019           1         B                      NA
+19      2019           1         B                      NA
+20      2019           1         B                      NA
+21      2019           1         B                      NA
+22      2019           1         B                      NA
+23      2019           1         B                      NA
+24      2019           1         B                      NA
+25      2019           1         B                      NA
+26      2019           1         B                      NA
+27      2019           1         B                      NA
+28      2019           1         B                      NA
+29      2019           1         B                      NA
+30      2019           1         B                      NA
+31      2019           1         B                      NA
+32      2019           1         B                      NA
+33      2019           1         B                      NA
+34      2019           1         B                      NA
+35      2019           1         B                      NA
+36      2019           1         B                      NA
+37      2019           1         B                      NA
+38      2019           1         B                      NA
+39      2019           1         B                      NA
+   Total_Tested_At_Entity_Level Total_Tested_at_Subgroup_Level Grade Test_Id
+1                           128                             NA     5       1
+2                          4567                             NA     5       1
+3                         10410                             NA     5       1
+4                          6996                             NA     5       1
+5                         17428                             NA     5       1
+6                          1347                             NA     5       1
+7                          4505                             NA     5       1
+8                          7944                             NA     5       1
+9                           294                             NA     5       1
+10                         6232                             NA     5       1
+11                          980                             NA     5       1
+12                         1063                             NA     5       1
+13                          785                             NA     5       1
+14                          707                             NA     5       1
+15                          376                             NA     5       1
+16                        18260                             NA     5       1
+17                         2916                             NA     5       1
+18                         5048                             NA     5       1
+19                          192                             NA     5       1
+20                           52                             NA     5       1
+21                          862                             NA     5       1
+22                          765                             NA     5       1
+23                          179                             NA     5       1
+24                         1773                             NA     5       1
+25                         4614                             NA     5       1
+26                         5614                             NA     5       1
+27                           75                             NA     5       1
+28                         2036                             NA     5       1
+29                          564                             NA     5       1
+30                          247                             NA     5       1
+31                         1374                             NA     5       1
+32                         4844                             NA     5       1
+33                         6354                             NA     5       1
+34                          163                             NA     5       1
+35                           75                             NA     5       1
+36                          210                             NA     5       1
+37                         1465                             NA     5       1
+38                          475                             NA     5       1
+39                          374                             NA     5       1
+   CAASPP_Reported_Enrollment Students_Tested Mean_Scale_Score
+1                          17              16           2382.9
+2                         721             703           2534.6
+3                        1654            1610           2470.8
+4                         994             981           2531.2
+5                        3131            3030           2465.1
+6                         190             188           2602.3
+7                         646             632           2472.7
+8                        1125            1098           2575.7
+9                          32              31           2467.8
+10                        880             867           2508.1
+11                        161             159           2474.7
+12                        146             144           2488.8
+13                        122             121           2473.9
+14                        108             107           2446.3
+15                         60              57           2475.8
+16                       2648            2612           2575.2
+17                        369             367           2504.3
+18                        689             679           2448.4
+19                         32              31           2568.2
+20                         11              11           2484.2
+21                        161             156           2463.6
+22                        125             122           2471.0
+23                         41              37           2474.6
+24                        281             265           2572.1
+25                        750             724           2535.2
+26                        747             727           2517.8
+27                         16              16           2392.1
+28                        307             302           2509.9
+29                         92              92           2511.1
+30                         34              33           2485.3
+31                        200             190           2461.7
+32                        683             676           2552.0
+33                       1024            1003           2573.1
+34                         15              15           2472.0
+35                         14              13           2496.8
+36                         30              30           2507.2
+37                        245             237           2475.9
+38                         90              86           2482.4
+39                         63              63           2510.6
+   Percentage_Standard_Exceeded Percentage_Standard_Met
+1                          0.00                    0.00
+2                         35.85                   32.01
+3                         11.68                   27.39
+4                         32.52                   31.70
+5                         16.25                   21.27
+6                         64.36                   28.19
+7                         13.45                   27.22
+8                         52.05                   28.81
+9                          6.45                   29.03
+10                        24.34                   30.91
+11                        14.56                   26.58
+12                        16.67                   28.47
+13                        11.57                   27.27
+14                         8.41                   19.63
+15                         7.02                   31.58
+16                        53.91                   25.56
+17                        22.68                   29.51
+18                         9.87                   18.56
+19                        48.39                   29.03
+20                        18.18                   27.27
+21                        10.90                   21.15
+22                         7.38                   27.05
+23                        10.81                   21.62
+24                        52.45                   26.79
+25                        37.29                   28.45
+26                        27.79                   31.50
+27                         0.00                    6.25
+28                        21.52                   36.09
+29                        23.91                   29.35
+30                        18.18                   27.27
+31                        10.00                   25.79
+32                        41.42                   31.07
+33                        51.25                   29.61
+34                        20.00                   20.00
+35                        30.77                    7.69
+36                        30.00                   30.00
+37                        13.92                   29.11
+38                        12.79                   31.40
+39                        22.22                   39.68
+   Percentage_Standard_Met_and_Above Percentage_Standard_Nearly_Met
+1                               0.00                           6.25
+2                              67.85                          14.79
+3                              39.07                          20.99
+4                              64.22                          17.23
+5                              37.52                          18.46
+6                              92.55                           4.79
+7                              40.66                          21.04
+8                              80.86                          11.30
+9                              35.48                          25.81
+10                             55.25                          17.19
+11                             41.14                          22.15
+12                             45.14                          20.14
+13                             38.84                          25.62
+14                             28.04                          23.36
+15                             38.60                          28.07
+16                             79.46                           9.69
+17                             52.19                          20.49
+18                             28.42                          20.77
+19                             77.42                          12.90
+20                             45.45                          27.27
+21                             32.05                          26.28
+22                             34.43                          31.97
+23                             32.43                          45.95
+24                             79.25                          11.32
+25                             65.75                          14.09
+26                             59.28                          20.08
+27                              6.25                          18.75
+28                             57.62                          20.20
+29                             53.26                          23.91
+30                             45.45                          15.15
+31                             35.79                          21.58
+32                             72.49                          14.94
+33                             80.86                           8.97
+34                             40.00                          20.00
+35                             38.46                          23.08
+36                             60.00                          13.33
+37                             43.04                          19.83
+38                             44.19                          22.09
+39                             61.90                          19.05
+   Percentage_Standard_Not_Met Students_with_Scores
+1                        93.75                   16
+2                        17.35                  703
+3                        39.94                 1610
+4                        18.55                  981
+5                        44.02                 3028
+6                         2.66                  188
+7                        38.29                  632
+8                         7.84                 1097
+9                        38.71                   31
+10                       27.57                  867
+11                       36.71                  158
+12                       34.72                  144
+13                       35.54                  121
+14                       48.60                  107
+15                       33.33                   57
+16                       10.84                 2610
+17                       27.32                  366
+18                       50.81                  679
+19                        9.68                   31
+20                       27.27                   11
+21                       41.67                  156
+22                       33.61                  122
+23                       21.62                   37
+24                        9.43                  265
+25                       20.17                  724
+26                       20.63                  727
+27                       75.00                   16
+28                       22.19                  302
+29                       22.83                   92
+30                       39.39                   33
+31                       42.63                  190
+32                       12.57                  676
+33                       10.17                 1003
+34                       40.00                   15
+35                       38.46                   13
+36                       26.67                   30
+37                       37.13                  237
+38                       33.72                   86
+39                       19.05                   63
+   Area_1_Percentage_Above_Standard Area_1_Percentage_At_or_Near_Standard
+1                              0.00                                    NA
+2                             41.54                                    NA
+3                             15.72                                    NA
+4                             37.51                                    NA
+5                             20.61                                    NA
+6                             63.83                                    NA
+7                             17.72                                    NA
+8                             57.34                                    NA
+9                              6.45                                    NA
+10                            29.56                                    NA
+11                            21.52                                    NA
+12                            20.14                                    NA
+13                            14.88                                    NA
+14                             8.49                                    NA
+15                            17.54                                    NA
+16                            54.52                                    NA
+17                            28.69                                    NA
+18                            11.50                                    NA
+19                            51.61                                    NA
+20                            18.18                                    NA
+21                            14.74                                    NA
+22                            14.75                                    NA
+23                            10.81                                    NA
+24                            57.36                                    NA
+25                            44.20                                    NA
+26                            30.26                                    NA
+27                             6.25                                    NA
+28                            29.80                                    NA
+29                            23.91                                    NA
+30                            36.36                                    NA
+31                            20.00                                    NA
+32                            46.15                                    NA
+33                            55.83                                    NA
+34                            26.67                                    NA
+35                            38.46                                    NA
+36                            26.67                                    NA
+37                            24.89                                    NA
+38                            22.09                                    NA
+39                            31.75                                    NA
+   Area_1_Percentage_Below_Standard Area_2_Percentage_Above_Standard
+1                             68.75                             0.00
+2                             17.07                            34.99
+3                             38.04                            18.06
+4                             16.51                            33.91
+5                             40.26                            19.13
+6                              2.66                            52.66
+7                             38.77                            20.41
+8                              9.12                            51.96
+9                             29.03                             9.68
+10                            26.79                            30.75
+11                            31.01                            14.65
+12                            34.72                            22.22
+13                            39.67                            16.53
+14                            49.06                            14.15
+15                            28.07                             8.77
+16                            11.15                            56.65
+17                            25.96                            23.77
+18                            48.67                            15.49
+19                            12.90                            38.71
+20                            27.27                            27.27
+21                            40.38                            10.26
+22                            31.97                            16.39
+23                            18.92                            11.11
+24                             9.06                            47.17
+25                            19.89                            37.26
+26                            23.11                            35.90
+27                            68.75                             0.00
+28                            19.21                            23.51
+29                            16.30                            27.17
+30                            27.27                             9.09
+31                            40.53                             8.95
+32                            13.17                            41.27
+33                             9.47                            54.84
+34                            33.33                            13.33
+35                            15.38                            23.08
+36                            30.00                            23.33
+37                            32.49                            13.56
+38                            27.91                            18.82
+39                            20.63                            36.51
+   Area_2_Percentage_At_or_Near_Standard Area_2_Percentage_Below_Standard
+1                                     NA                            87.50
+2                                     NA                            19.35
+3                                     NA                            30.39
+4                                     NA                            18.18
+5                                     NA                            38.73
+6                                     NA                             3.72
+7                                     NA                            31.65
+8                                     NA                             9.21
+9                                     NA                            29.03
+10                                    NA                            23.93
+11                                    NA                            38.22
+12                                    NA                            25.00
+13                                    NA                            28.10
+14                                    NA                            39.62
+15                                    NA                            36.84
+16                                    NA                             9.89
+17                                    NA                            28.69
+18                                    NA                            39.38
+19                                    NA                             9.68
+20                                    NA                            18.18
+21                                    NA                            35.90
+22                                    NA                            29.51
+23                                    NA                            30.56
+24                                    NA                             9.43
+25                                    NA                            21.33
+26                                    NA                            16.09
+27                                    NA                            81.25
+28                                    NA                            21.85
+29                                    NA                            19.57
+30                                    NA                            39.39
+31                                    NA                            43.16
+32                                    NA                            13.76
+33                                    NA                             9.77
+34                                    NA                            40.00
+35                                    NA                            30.77
+36                                    NA                            26.67
+37                                    NA                            33.90
+38                                    NA                            41.18
+39                                    NA                            19.05
+   Area_3_Percentage_Above_Standard Area_3_Percentage_At_or_Near_Standard
+1                              6.25                                    NA
+2                             26.88                                    NA
+3                              9.26                                    NA
+4                             26.12                                    NA
+5                             12.62                                    NA
+6                             53.72                                    NA
+7                              9.97                                    NA
+8                             39.47                                    NA
+9                              6.45                                    NA
+10                            19.08                                    NA
+11                            10.76                                    NA
+12                            16.67                                    NA
+13                            11.57                                    NA
+14                             1.89                                    NA
+15                            12.28                                    NA
+16                            39.96                                    NA
+17                            20.77                                    NA
+18                             9.29                                    NA
+19                            16.13                                    NA
+20                             9.09                                    NA
+21                             7.69                                    NA
+22                            10.66                                    NA
+23                             8.33                                    NA
+24                            36.98                                    NA
+25                            30.43                                    NA
+26                            18.43                                    NA
+27                             0.00                                    NA
+28                            14.24                                    NA
+29                            17.39                                    NA
+30                            15.15                                    NA
+31                             7.89                                    NA
+32                            31.80                                    NA
+33                            36.79                                    NA
+34                            20.00                                    NA
+35                            15.38                                    NA
+36                            16.67                                    NA
+37                            12.71                                    NA
+38                             9.30                                    NA
+39                            17.46                                    NA
+   Area_3_Percentage_Below_Standard Area_4_Percentage_Above_Standard
+1                             50.00                             0.00
+2                             14.51                            39.97
+3                             29.77                            18.27
+4                             15.41                            36.63
+5                             33.37                            19.00
+6                              2.13                            66.49
+7                             30.22                            18.51
+8                              6.84                            53.78
+9                             25.81                            12.90
+10                            18.61                            29.13
+11                            25.95                            21.52
+12                            22.22                            22.92
+13                            25.62                            19.83
+14                            38.68                            13.21
+15                            21.05                            10.53
+16                             8.54                            53.95
+17                            20.49                            27.87
+18                            40.86                            13.57
+19                            12.90                            61.29
+20                            36.36                            27.27
+21                            28.21                            14.10
+22                            30.33                             9.84
+23                            19.44                            11.11
+24                             7.55                            54.34
+25                            16.87                            40.25
+26                            20.63                            34.53
+27                            56.25                             0.00
+28                            16.23                            24.17
+29                            19.57                            23.91
+30                            21.21                            18.18
+31                            27.37                            11.58
+32                             9.91                            44.67
+33                             7.78                            52.34
+34                            20.00                            13.33
+35                            38.46                            23.08
+36                            20.00                            36.67
+37                            27.54                            22.46
+38                            20.93                            13.95
+39                            22.22                            23.81
+   Area_4_Percentage_At_or_Near_Standard Area_4_Percentage_Below_Standard
+1                                     NA                            87.50
+2                                     NA                            17.64
+3                                     NA                            38.41
+4                                     NA                            18.37
+5                                     NA                            42.19
+6                                     NA                             2.13
+7                                     NA                            36.87
+8                                     NA                             8.39
+9                                     NA                            38.71
+10                                    NA                            28.67
+11                                    NA                            34.18
+12                                    NA                            35.42
+13                                    NA                            38.84
+14                                    NA                            40.57
+15                                    NA                            31.58
+16                                    NA                            11.03
+17                                    NA                            24.86
+18                                    NA                            46.61
+19                                    NA                             9.68
+20                                    NA                            27.27
+21                                    NA                            43.59
+22                                    NA                            36.07
+23                                    NA                            22.22
+24                                    NA                             9.43
+25                                    NA                            20.19
+26                                    NA                            19.67
+27                                    NA                            68.75
+28                                    NA                            23.84
+29                                    NA                            22.83
+30                                    NA                            36.36
+31                                    NA                            40.00
+32                                    NA                            13.31
+33                                    NA                            10.37
+34                                    NA                            40.00
+35                                    NA                            30.77
+36                                    NA                            20.00
+37                                    NA                            39.41
+38                                    NA                            33.72
+39                                    NA                            22.22
+   Total_Tested_with_Scores Area_1_Percentage_Near_Standard
+1                       127                           31.25
+2                      4566                           41.39
+3                     10403                           46.24
+4                      6990                           45.97
+5                     17396                           39.13
+6                      1347                           33.51
+7                      4500                           43.51
+8                      7942                           33.55
+9                       294                           64.52
+10                     6216                           43.65
+11                      979                           47.47
+12                     1063                           45.14
+13                      785                           45.45
+14                      707                           42.45
+15                      375                           54.39
+16                    18251                           34.33
+17                     2915                           45.36
+18                     5044                           39.82
+19                      192                           35.48
+20                       52                           54.55
+21                      862                           44.87
+22                      765                           53.28
+23                      179                           70.27
+24                     1771                           33.58
+25                     4603                           35.91
+26                     5609                           46.63
+27                       75                           25.00
+28                     2036                           50.99
+29                      564                           59.78
+30                      247                           36.36
+31                     1373                           39.47
+32                     4840                           40.68
+33                     6354                           34.70
+34                      163                           40.00
+35                       75                           46.15
+36                      210                           43.33
+37                     1464                           42.62
+38                      475                           50.00
+39                      374                           47.62
+   Area_2_Percentage_Near_Standard Area_3_Percentage_Near_Standard
+1                            12.50                           43.75
+2                            45.66                           58.61
+3                            51.56                           60.97
+4                            47.91                           58.47
+5                            42.13                           54.01
+6                            43.62                           44.15
+7                            47.94                           59.81
+8                            38.83                           53.69
+9                            61.29                           67.74
+10                           45.32                           62.31
+11                           47.13                           63.29
+12                           52.78                           61.11
+13                           55.37                           62.81
+14                           46.23                           59.43
+15                           54.39                           66.67
+16                           33.46                           51.49
+17                           47.54                           58.74
+18                           45.13                           49.85
+19                           51.61                           70.97
+20                           54.55                           54.55
+21                           53.85                           64.10
+22                           54.10                           59.02
+23                           58.33                           72.22
+24                           43.40                           55.47
+25                           41.41                           52.70
+26                           48.01                           60.94
+27                           18.75                           43.75
+28                           54.64                           69.54
+29                           53.26                           63.04
+30                           51.52                           63.64
+31                           47.89                           64.74
+32                           44.97                           58.28
+33                           35.39                           55.43
+34                           46.67                           60.00
+35                           46.15                           46.15
+36                           50.00                           63.33
+37                           52.54                           59.75
+38                           40.00                           69.77
+39                           44.44                           60.32
+   Area_4_Percentage_Near_Standard
+1                            12.50
+2                            42.39
+3                            43.32
+4                            45.00
+5                            38.82
+6                            31.38
+7                            44.62
+8                            37.83
+9                            48.39
+10                           42.20
+11                           44.30
+12                           41.67
+13                           41.32
+14                           46.23
+15                           57.89
+16                           35.02
+17                           47.27
+18                           39.82
+19                           29.03
+20                           45.45
+21                           42.31
+22                           54.10
+23                           66.67
+24                           36.23
+25                           39.56
+26                           45.80
+27                           31.25
+28                           51.99
+29                           53.26
+30                           45.45
+31                           48.42
+32                           42.01
+33                           37.29
+34                           46.67
+35                           46.15
+36                           43.33
+37                           38.14
+38                           52.33
+39                           53.97
 ```
 ]
 
@@ -116,7 +821,7 @@ count: false
 .panel1-intro-auto[
 
 ```r
-# New data source for schools
+# Comparing Percent Exceeded and Scale Score
 
 caaspp %&gt;%
 *ggplot()
@@ -134,7 +839,7 @@ count: false
 .panel1-intro-auto[
 
 ```r
-# New data source for schools
+# Comparing Percent Exceeded and Scale Score
 
 caaspp %&gt;%
 ggplot() +
@@ -153,12 +858,12 @@ count: false
 .panel1-intro-auto[
 
 ```r
-# New data source for schools
+# Comparing Percent Exceeded and Scale Score
 
 caaspp %&gt;%
 ggplot() +
   aes(y = Percentage_Standard_Exceeded) +
-* aes(x = Percentage_Standard_Not_Met)
+* aes(x = Mean_Scale_Score)
 ```
 ]
  
@@ -173,12 +878,12 @@ count: false
 .panel1-intro-auto[
 
 ```r
-# New data source for schools
+# Comparing Percent Exceeded and Scale Score
 
 caaspp %&gt;%
 ggplot() +
   aes(y = Percentage_Standard_Exceeded) +
-  aes(x = Percentage_Standard_Not_Met)  +
+  aes(x = Mean_Scale_Score)  +
 * geom_point()
 ```
 ]
@@ -194,12 +899,12 @@ count: false
 .panel1-intro-auto[
 
 ```r
-# New data source for schools
+# Comparing Percent Exceeded and Scale Score
 
 caaspp %&gt;%
 ggplot() +
   aes(y = Percentage_Standard_Exceeded) +
-  aes(x = Percentage_Standard_Not_Met)  +
+  aes(x = Mean_Scale_Score)  +
   geom_point() +
 * aes(shape = County_Code )
 ```
@@ -216,19 +921,121 @@ count: false
 .panel1-intro-auto[
 
 ```r
-# New data source for schools
+# Comparing Percent Exceeded and Scale Score
 
 caaspp %&gt;%
 ggplot() +
   aes(y = Percentage_Standard_Exceeded) +
-  aes(x = Percentage_Standard_Not_Met)  +
+  aes(x = Mean_Scale_Score)  +
   geom_point() +
-  aes(shape = County_Code )
+  aes(shape = County_Code ) +
+* aes(color = County_Code )
 ```
 ]
  
 .panel2-intro-auto[
 ![](minimal-flipbook_files/figure-html/intro_auto_07_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-intro-auto[
+
+```r
+# Comparing Percent Exceeded and Scale Score
+
+caaspp %&gt;%
+ggplot() +
+  aes(y = Percentage_Standard_Exceeded) +
+  aes(x = Mean_Scale_Score)  +
+  geom_point() +
+  aes(shape = County_Code ) +
+  aes(color = County_Code ) +
+* aes(size = Students_Tested)
+```
+]
+ 
+.panel2-intro-auto[
+![](minimal-flipbook_files/figure-html/intro_auto_08_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-intro-auto[
+
+```r
+# Comparing Percent Exceeded and Scale Score
+
+caaspp %&gt;%
+ggplot() +
+  aes(y = Percentage_Standard_Exceeded) +
+  aes(x = Mean_Scale_Score)  +
+  geom_point() +
+  aes(shape = County_Code ) +
+  aes(color = County_Code ) +
+  aes(size = Students_Tested) +
+* aes(alpha = Percentage_Standard_Met_and_Above)
+```
+]
+ 
+.panel2-intro-auto[
+![](minimal-flipbook_files/figure-html/intro_auto_09_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-intro-auto[
+
+```r
+# Comparing Percent Exceeded and Scale Score
+
+caaspp %&gt;%
+ggplot() +
+  aes(y = Percentage_Standard_Exceeded) +
+  aes(x = Mean_Scale_Score)  +
+  geom_point() +
+  aes(shape = County_Code ) +
+  aes(color = County_Code ) +
+  aes(size = Students_Tested) +
+  aes(alpha = Percentage_Standard_Met_and_Above) +
+* theme(legend.position = "none")
+```
+]
+ 
+.panel2-intro-auto[
+![](minimal-flipbook_files/figure-html/intro_auto_10_output-1.png)&lt;!-- --&gt;
+]
+
+---
+count: false
+ 
+
+.panel1-intro-auto[
+
+```r
+# Comparing Percent Exceeded and Scale Score
+
+caaspp %&gt;%
+ggplot() +
+  aes(y = Percentage_Standard_Exceeded) +
+  aes(x = Mean_Scale_Score)  +
+  geom_point() +
+  aes(shape = County_Code ) +
+  aes(color = County_Code ) +
+  aes(size = Students_Tested) +
+  aes(alpha = Percentage_Standard_Met_and_Above) +
+  theme(legend.position = "none")
+```
+]
+ 
+.panel2-intro-auto[
+![](minimal-flipbook_files/figure-html/intro_auto_11_output-1.png)&lt;!-- --&gt;
 ]
 
 &lt;style&gt;
@@ -257,8 +1064,6 @@ ggplot() +
   font-size: 80%
 }
 &lt;/style&gt;
-
-
 
 
 
@@ -918,6 +1723,21 @@ susp.green %&gt;%
 
 
 
+---
+
+# Principle of Proportional Ink
+
+--
+
+### The sizes of shaded areas in a visualization need to be proportional to the data values they represent.
+
+--
+
+### Eliminate clutter
+
+--
+
+### Focus attention
 
 
 ---
@@ -1392,7 +2212,7 @@ susp.green %&gt;%
   ggplot( ) +
   aes(x = academic_year) +
   aes(y = as.numeric( suspension_rate_total)/100) +
-* geom_line( )
+* aes(group = school_name)
 ```
 ]
  
@@ -1412,8 +2232,8 @@ susp.green %&gt;%
   ggplot( ) +
   aes(x = academic_year) +
   aes(y = as.numeric( suspension_rate_total)/100) +
-  geom_line( ) +
-* aes(group = school_name)
+  aes(group = school_name) +
+* geom_line( )
 ```
 ]
  
@@ -1433,8 +2253,8 @@ susp.green %&gt;%
   ggplot( ) +
   aes(x = academic_year) +
   aes(y = as.numeric( suspension_rate_total)/100) +
-  geom_line( ) +
   aes(group = school_name) +
+  geom_line( ) +
 * aes(color = school_name)
 ```
 ]
@@ -1455,8 +2275,8 @@ susp.green %&gt;%
   ggplot( ) +
   aes(x = academic_year) +
   aes(y = as.numeric( suspension_rate_total)/100) +
-  geom_line( ) +
   aes(group = school_name) +
+  geom_line( ) +
   aes(color = school_name) +
 *   labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time")
 ```
@@ -1478,8 +2298,8 @@ susp.green %&gt;%
   ggplot( ) +
   aes(x = academic_year) +
   aes(y = as.numeric( suspension_rate_total)/100) +
-  geom_line( ) +
   aes(group = school_name) +
+  geom_line( ) +
   aes(color = school_name) +
     labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
 *   labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp")
@@ -1502,8 +2322,8 @@ susp.green %&gt;%
   ggplot( ) +
   aes(x = academic_year) +
   aes(y = as.numeric( suspension_rate_total)/100) +
-  geom_line( ) +
   aes(group = school_name) +
+  geom_line( ) +
   aes(color = school_name) +
     labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
     labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp")
@@ -1545,6 +2365,22 @@ susp.green %&gt;%
 
 
 
+
+---
+
+# Ease of modifcation and expansion
+
+--
+
+- Can tweak individual parts easily
+
+--
+
+- When making multiple graphs, only need to make change in one place
+
+--
+
+- Others can reproduce your steps
 
 
 ---
@@ -1957,7 +2793,7 @@ susp.green %&gt;%
   ggplot( ) +
   aes(x = academic_year) +
   aes(y = as.numeric( suspension_rate_total)/100) +
-* geom_line( show.legend = FALSE )
+* facet_wrap(~definition)
 ```
 ]
  
@@ -1976,7 +2812,7 @@ susp.green %&gt;%
   ggplot( ) +
   aes(x = academic_year) +
   aes(y = as.numeric( suspension_rate_total)/100) +
-  geom_line( show.legend = FALSE ) +
+  facet_wrap(~definition) +
 * aes(group = school_name)
 ```
 ]
@@ -1996,9 +2832,9 @@ susp.green %&gt;%
   ggplot( ) +
   aes(x = academic_year) +
   aes(y = as.numeric( suspension_rate_total)/100) +
-  geom_line( show.legend = FALSE ) +
+  facet_wrap(~definition) +
   aes(group = school_name) +
-* aes(color = school_name)
+* geom_line( show.legend = FALSE )
 ```
 ]
  
@@ -2017,10 +2853,10 @@ susp.green %&gt;%
   ggplot( ) +
   aes(x = academic_year) +
   aes(y = as.numeric( suspension_rate_total)/100) +
-  geom_line( show.legend = FALSE ) +
+  facet_wrap(~definition) +
   aes(group = school_name) +
-  aes(color = school_name) +
-* aes(size = 0.75)
+  geom_line( show.legend = FALSE ) +
+* aes(color = school_name)
 ```
 ]
  
@@ -2039,11 +2875,12 @@ susp.green %&gt;%
   ggplot( ) +
   aes(x = academic_year) +
   aes(y = as.numeric( suspension_rate_total)/100) +
-  geom_line( show.legend = FALSE ) +
+  facet_wrap(~definition) +
   aes(group = school_name) +
+  geom_line( show.legend = FALSE ) +
   aes(color = school_name) +
-  aes(size = 0.75) +
-* scale_size_identity()
+* scale_color_manual(
+*   values =  c("#000000",  "#CC79A7"))
 ```
 ]
  
@@ -2062,12 +2899,14 @@ susp.green %&gt;%
   ggplot( ) +
   aes(x = academic_year) +
   aes(y = as.numeric( suspension_rate_total)/100) +
-  geom_line( show.legend = FALSE ) +
+  facet_wrap(~definition) +
   aes(group = school_name) +
+  geom_line( show.legend = FALSE ) +
   aes(color = school_name) +
-  aes(size = 0.75) +
-  scale_size_identity() +
-* facet_wrap(~definition, ncol = 3)
+  scale_color_manual(
+    values =  c("#000000",  "#CC79A7")) +
+* scale_y_continuous(
+*   labels = scales::label_percent(1)  )
 ```
 ]
  
@@ -2086,13 +2925,15 @@ susp.green %&gt;%
   ggplot( ) +
   aes(x = academic_year) +
   aes(y = as.numeric( suspension_rate_total)/100) +
-  geom_line( show.legend = FALSE ) +
+  facet_wrap(~definition) +
   aes(group = school_name) +
+  geom_line( show.legend = FALSE ) +
   aes(color = school_name) +
-  aes(size = 0.75) +
-  scale_size_identity() +
-  facet_wrap(~definition, ncol = 3) +
-* scale_color_manual(values =  c("#000000",  "#CC79A7"))
+  scale_color_manual(
+    values =  c("#000000",  "#CC79A7")) +
+  scale_y_continuous(
+    labels = scales::label_percent(1)  ) +
+* labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time")
 ```
 ]
  
@@ -2111,14 +2952,16 @@ susp.green %&gt;%
   ggplot( ) +
   aes(x = academic_year) +
   aes(y = as.numeric( suspension_rate_total)/100) +
-  geom_line( show.legend = FALSE ) +
+  facet_wrap(~definition) +
   aes(group = school_name) +
+  geom_line( show.legend = FALSE ) +
   aes(color = school_name) +
-  aes(size = 0.75) +
-  scale_size_identity() +
-  facet_wrap(~definition, ncol = 3) +
-  scale_color_manual(values =  c("#000000",  "#CC79A7")) +
-* scale_y_continuous(labels = scales::label_percent(1)    )
+  scale_color_manual(
+    values =  c("#000000",  "#CC79A7")) +
+  scale_y_continuous(
+    labels = scales::label_percent(1)  ) +
+  labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
+* labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp")
 ```
 ]
  
@@ -2137,15 +2980,17 @@ susp.green %&gt;%
   ggplot( ) +
   aes(x = academic_year) +
   aes(y = as.numeric( suspension_rate_total)/100) +
-  geom_line( show.legend = FALSE ) +
+  facet_wrap(~definition) +
   aes(group = school_name) +
+  geom_line( show.legend = FALSE ) +
   aes(color = school_name) +
-  aes(size = 0.75) +
-  scale_size_identity() +
-  facet_wrap(~definition, ncol = 3) +
-  scale_color_manual(values =  c("#000000",  "#CC79A7")) +
-  scale_y_continuous(labels = scales::label_percent(1)    ) +
-* labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time")
+  scale_color_manual(
+    values =  c("#000000",  "#CC79A7")) +
+  scale_y_continuous(
+    labels = scales::label_percent(1)  ) +
+  labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
+  labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") +
+* labs(x = "Academic Year")
 ```
 ]
  
@@ -2164,16 +3009,18 @@ susp.green %&gt;%
   ggplot( ) +
   aes(x = academic_year) +
   aes(y = as.numeric( suspension_rate_total)/100) +
-  geom_line( show.legend = FALSE ) +
+  facet_wrap(~definition) +
   aes(group = school_name) +
+  geom_line( show.legend = FALSE ) +
   aes(color = school_name) +
-  aes(size = 0.75) +
-  scale_size_identity() +
-  facet_wrap(~definition, ncol = 3) +
-  scale_color_manual(values =  c("#000000",  "#CC79A7")) +
-  scale_y_continuous(labels = scales::label_percent(1)    ) +
+  scale_color_manual(
+    values =  c("#000000",  "#CC79A7")) +
+  scale_y_continuous(
+    labels = scales::label_percent(1)  ) +
   labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
-* labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp")
+  labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") +
+  labs(x = "Academic Year") +
+* labs(y = "Suspension Rate")
 ```
 ]
  
@@ -2192,17 +3039,19 @@ susp.green %&gt;%
   ggplot( ) +
   aes(x = academic_year) +
   aes(y = as.numeric( suspension_rate_total)/100) +
-  geom_line( show.legend = FALSE ) +
+  facet_wrap(~definition) +
   aes(group = school_name) +
+  geom_line( show.legend = FALSE ) +
   aes(color = school_name) +
-  aes(size = 0.75) +
-  scale_size_identity() +
-  facet_wrap(~definition, ncol = 3) +
-  scale_color_manual(values =  c("#000000",  "#CC79A7")) +
-  scale_y_continuous(labels = scales::label_percent(1)    ) +
+  scale_color_manual(
+    values =  c("#000000",  "#CC79A7")) +
+  scale_y_continuous(
+    labels = scales::label_percent(1)  ) +
   labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
   labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") +
-* labs(color = "")
+  labs(x = "Academic Year") +
+  labs(y = "Suspension Rate") +
+* theme_hc()
 ```
 ]
  
@@ -2221,144 +3070,16 @@ susp.green %&gt;%
   ggplot( ) +
   aes(x = academic_year) +
   aes(y = as.numeric( suspension_rate_total)/100) +
-  geom_line( show.legend = FALSE ) +
+  facet_wrap(~definition) +
   aes(group = school_name) +
+  geom_line( show.legend = FALSE ) +
   aes(color = school_name) +
-  aes(size = 0.75) +
-  scale_size_identity() +
-  facet_wrap(~definition, ncol = 3) +
-  scale_color_manual(values =  c("#000000",  "#CC79A7")) +
-  scale_y_continuous(labels = scales::label_percent(1)    ) +
+  scale_color_manual(
+    values =  c("#000000",  "#CC79A7")) +
+  scale_y_continuous(
+    labels = scales::label_percent(1)  ) +
   labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
   labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") +
-  labs(color = "") +
-* labs(col = "")
-```
-]
- 
-.panel2-facet-auto[
-![](minimal-flipbook_files/figure-html/facet_auto_16_output-1.png)&lt;!-- --&gt;
-]
-
----
-count: false
- 
-
-.panel1-facet-auto[
-
-```r
-susp.green %&gt;%
-  ggplot( ) +
-  aes(x = academic_year) +
-  aes(y = as.numeric( suspension_rate_total)/100) +
-  geom_line( show.legend = FALSE ) +
-  aes(group = school_name) +
-  aes(color = school_name) +
-  aes(size = 0.75) +
-  scale_size_identity() +
-  facet_wrap(~definition, ncol = 3) +
-  scale_color_manual(values =  c("#000000",  "#CC79A7")) +
-  scale_y_continuous(labels = scales::label_percent(1)    ) +
-  labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
-  labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") +
-  labs(color = "") +
-  labs(col = "") +
-* labs(x = "Academic Year")
-```
-]
- 
-.panel2-facet-auto[
-![](minimal-flipbook_files/figure-html/facet_auto_17_output-1.png)&lt;!-- --&gt;
-]
-
----
-count: false
- 
-
-.panel1-facet-auto[
-
-```r
-susp.green %&gt;%
-  ggplot( ) +
-  aes(x = academic_year) +
-  aes(y = as.numeric( suspension_rate_total)/100) +
-  geom_line( show.legend = FALSE ) +
-  aes(group = school_name) +
-  aes(color = school_name) +
-  aes(size = 0.75) +
-  scale_size_identity() +
-  facet_wrap(~definition, ncol = 3) +
-  scale_color_manual(values =  c("#000000",  "#CC79A7")) +
-  scale_y_continuous(labels = scales::label_percent(1)    ) +
-  labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
-  labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") +
-  labs(color = "") +
-  labs(col = "") +
-  labs(x = "Academic Year") +
-* labs(y = "Suspension Rate")
-```
-]
- 
-.panel2-facet-auto[
-![](minimal-flipbook_files/figure-html/facet_auto_18_output-1.png)&lt;!-- --&gt;
-]
-
----
-count: false
- 
-
-.panel1-facet-auto[
-
-```r
-susp.green %&gt;%
-  ggplot( ) +
-  aes(x = academic_year) +
-  aes(y = as.numeric( suspension_rate_total)/100) +
-  geom_line( show.legend = FALSE ) +
-  aes(group = school_name) +
-  aes(color = school_name) +
-  aes(size = 0.75) +
-  scale_size_identity() +
-  facet_wrap(~definition, ncol = 3) +
-  scale_color_manual(values =  c("#000000",  "#CC79A7")) +
-  scale_y_continuous(labels = scales::label_percent(1)    ) +
-  labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
-  labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") +
-  labs(color = "") +
-  labs(col = "") +
-  labs(x = "Academic Year") +
-  labs(y = "Suspension Rate") +
-* theme_hc()
-```
-]
- 
-.panel2-facet-auto[
-![](minimal-flipbook_files/figure-html/facet_auto_19_output-1.png)&lt;!-- --&gt;
-]
-
----
-count: false
- 
-
-.panel1-facet-auto[
-
-```r
-susp.green %&gt;%
-  ggplot( ) +
-  aes(x = academic_year) +
-  aes(y = as.numeric( suspension_rate_total)/100) +
-  geom_line( show.legend = FALSE ) +
-  aes(group = school_name) +
-  aes(color = school_name) +
-  aes(size = 0.75) +
-  scale_size_identity() +
-  facet_wrap(~definition, ncol = 3) +
-  scale_color_manual(values =  c("#000000",  "#CC79A7")) +
-  scale_y_continuous(labels = scales::label_percent(1)    ) +
-  labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
-  labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") +
-  labs(color = "") +
-  labs(col = "") +
   labs(x = "Academic Year") +
   labs(y = "Suspension Rate") +
   theme_hc()
@@ -2366,7 +3087,7 @@ susp.green %&gt;%
 ]
  
 .panel2-facet-auto[
-![](minimal-flipbook_files/figure-html/facet_auto_20_output-1.png)&lt;!-- --&gt;
+![](minimal-flipbook_files/figure-html/facet_auto_16_output-1.png)&lt;!-- --&gt;
 ]
 
 &lt;style&gt;
@@ -2401,35 +3122,59 @@ susp.green %&gt;%
 
 
 
---- 
 
+---
+
+class: middle, center
+# Graph Chooser
+
+&lt;img src="img/chooser.png" width="50%" /&gt;
+
+http://experception.net/Franconeri_ExperCeptionDotNet_DataVisQuickRef.pdf
+
+
+---
+
+class: middle, center
+# R Graph Gallery
+
+
+
+&lt;img src="img/gallery.png" width="50%" /&gt;
 
 https://www.r-graph-gallery.com/
 
 ---
 
+# Book Resources
 
-
-http://experception.net/Franconeri_ExperCeptionDotNet_DataVisQuickRef.pdf
-
-
-
----
-
-Kieran Healy's Data Visualization: A practical introduction
+### Kieran Healy's Data Visualization: A practical introduction
 https://socviz.co/index.html#preface
 
-Hadley Wickham's ggplot2:  Elegant Gaphics for Data Analysis
+### Hadley Wickham's ggplot2:  Elegant Graphics for Data Analysis
 https://ggplot2-book.org/index.html
 
-Many others:
+### Many others:
 https://bookdown.org/home/tags/visualization/
 
 ---
 
+class: middle, center
+
+# Checklist 
+
+
+&lt;img src="img/checklist.png" width="100%" /&gt;
 
 https://stephanieevergreen.com/data-visualization-checklist/
 
+
+
+---
+class: middle, center
+
+
+&lt;img src="img/learn_unlearn_relearn.jpeg" width="60%" /&gt;
 
 
 ---
@@ -2440,6 +3185,10 @@ https://stephanieevergreen.com/data-visualization-checklist/
 
 
 &gt; **The flipbooked portion of this presentation was created with the {flipbookr} package.  Get it at remotes::install_github("EvaMaeRey/flipbookr")**
+
+- In addition to creating flipbookr, Evangeline Reynolds inspired the approach to showing aspects of ggplot. https://evangelinereynolds.netlify.app/
+
+- The formating was learned and inspired from Allison Hill https://arm.rbind.io/slides/xaringan.html#1
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
