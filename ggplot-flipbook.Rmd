@@ -18,7 +18,7 @@ output:
 ```{r, include = F}
 # This is the recommended set up for flipbooks
 # you might think about setting cache to TRUE as you gain practice --- building flipbooks from scratch can be time consuming
-knitr::opts_chunk$set(fig.width = 6, message = FALSE, warning = FALSE, comment = "", cache = T)
+knitr::opts_chunk$set(fig.width = 6, message = FALSE, warning = FALSE, comment = "", cache = F)
 library(flipbookr)
 library(tidyverse)
 library(here)
@@ -27,7 +27,9 @@ library(glue)
 library(ggrepel)
 
 
-susp.green <- read.csv("Greenfield Suspension data.csv")
+susp.green <- read.csv("Emerald Suspension data.csv")%>%
+    arrange(reporting_category) %>%
+    mutate(definition = fct_reorder(definition,reporting_category))
 
 caaspp <- read.csv("CAASPP_5th_grade.csv")  %>%
     mutate(Students_Tested = as.numeric(Students_Tested),
@@ -344,7 +346,7 @@ susp.green %>%
   aes(group = school_name) +
   aes(color = school_name) +
   aes(fill = school_name) +
-    labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
+    labs(title = "Percentage Suspended in Emerald High \ncompared to California over time") +
     labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") +
   theme(legend.position = "bottom") 
 
@@ -385,7 +387,7 @@ susp.green %>%
   aes(group = school_name) +
   geom_line( ) +
   aes(color = school_name) +
-    labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
+    labs(title = "Percentage Suspended in Emerald High \ncompared to California over time") +
     labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp")
 
 ```
@@ -436,10 +438,11 @@ susp.green %>%
     values =  c("#000000",  "#CC79A7")) +
   scale_y_continuous(
     labels = scales::label_percent(1)  ) +
-  labs(title = "Percentage Suspended in Greenfield High \ncompared to California over time") +
+  labs(title = "Percentage Suspended in Emerald High \ncompared to California over time") +
   labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") +
   labs(x = "Academic Year") + 
   labs(y = "Suspension Rate") +
+  theme(axis.text.x = element_text(color=c(1,0,1,0))) + 
   theme_hc()
 
 ```

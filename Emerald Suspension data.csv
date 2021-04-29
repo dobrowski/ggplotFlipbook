@@ -1,0 +1,165 @@
+,academic_year,school_name,reporting_category,definition,suspension_rate_total
+1,2011-12,Emerald High,GF,Female,5.4
+2,2011-12,Emerald High,GM,Male,13.4
+3,2011-12,Emerald High,RH,Hispanic or Latino,9.5
+4,2011-12,Emerald High,RW,White,5.6
+5,2011-12,Emerald High,SE,English Learners,13.4
+6,2011-12,State of California,GF,Female,3.3
+7,2011-12,State of California,GM,Male,8
+8,2011-12,State of California,RH,Hispanic or Latino,6.1
+9,2011-12,State of California,RW,White,4.7
+10,2011-12,State of California,SE,English Learners,6.7
+11,2011-12,State of California,TA,Total,5.7
+12,2012-13,State of California,GF,Female,2.9
+13,2012-13,State of California,GM,Male,7.3
+14,2012-13,State of California,RH,Hispanic or Latino,5.4
+15,2012-13,State of California,RW,White,4.2
+16,2011-12,Emerald High,TA,Total,9.5
+17,2012-13,Emerald High,GF,Female,6.7
+18,2012-13,Emerald High,GM,Male,22.5
+19,2012-13,Emerald High,RH,Hispanic or Latino,14.9
+20,2012-13,Emerald High,RW,White,13.6
+21,2012-13,Emerald High,SE,English Learners,18.6
+22,2012-13,Emerald High,TA,Total,14.6
+23,2013-14,State of California,GF,Female,2.4
+24,2013-14,State of California,GM,Male,6.2
+25,2013-14,State of California,RH,Hispanic or Latino,4.5
+26,2013-14,Emerald High,GF,Female,3
+27,2013-14,Emerald High,GM,Male,11.6
+28,2013-14,Emerald High,RH,Hispanic or Latino,7.4
+29,2013-14,Emerald High,RW,White,8.3
+30,2013-14,Emerald High,SE,English Learners,10.1
+31,2013-14,Emerald High,TA,Total,7.3
+32,2014-15,State of California,GF,Female,2.1
+33,2014-15,State of California,GM,Male,5.4
+34,2014-15,State of California,RH,Hispanic or Latino,3.8
+35,2014-15,State of California,RW,White,3.2
+36,2014-15,State of California,SE,English Learners,3.3
+37,2014-15,State of California,SH,Homeless,6
+38,2014-15,State of California,SM,Migrant,4.3
+39,2014-15,State of California,SS,Socioeconomically Disadvantaged,4.9
+40,2014-15,State of California,TA,Total,3.8
+41,2012-13,State of California,SE,English Learners,5.8
+42,2012-13,State of California,TA,Total,5.2
+43,2014-15,Emerald High,GF,Female,4.5
+44,2014-15,Emerald High,GM,Male,14.7
+45,2014-15,Emerald High,RH,Hispanic or Latino,9.8
+46,2014-15,Emerald High,RW,White,8.7
+47,2014-15,Emerald High,SE,English Learners,14.1
+48,2014-15,Emerald High,SH,Homeless,13.7
+49,2014-15,Emerald High,SM,Migrant,5.2
+50,2014-15,Emerald High,SS,Socioeconomically Disadvantaged,9.8
+51,2014-15,Emerald High,TA,Total,9.7
+52,2015-16,State of California,GF,Female,2
+53,2015-16,State of California,GM,Male,5.2
+54,2015-16,State of California,RH,Hispanic or Latino,3.7
+55,2015-16,State of California,RW,White,3.1
+56,2015-16,State of California,SD,Students with Disabilities,7.4
+57,2015-16,State of California,SE,English Learners,3.1
+58,2015-16,State of California,SH,Homeless,5.9
+59,2013-14,State of California,RW,White,3.6
+60,2013-14,State of California,SE,English Learners,3.6
+61,2013-14,State of California,TA,Total,4.3
+62,2015-16,Emerald High,GF,Female,4.9
+63,2015-16,Emerald High,GM,Male,15.3
+64,2015-16,Emerald High,RH,Hispanic or Latino,10.2
+65,2015-16,Emerald High,RW,White,12.5
+66,2015-16,Emerald High,SD,Students with Disabilities,11.4
+67,2015-16,Emerald High,SE,English Learners,14.5
+68,2015-16,Emerald High,SH,Homeless,12.4
+69,2015-16,Emerald High,SM,Migrant,8.2
+70,2015-16,Emerald High,SS,Socioeconomically Disadvantaged,11.2
+71,2015-16,Emerald High,TA,Total,10.3
+72,2015-16,State of California,SM,Migrant,4.1
+73,2015-16,State of California,SS,Socioeconomically Disadvantaged,4.7
+74,2015-16,State of California,TA,Total,3.7
+75,2016-17,State of California,GF,Female,2
+76,2016-17,State of California,GM,Male,5.2
+77,2016-17,State of California,RH,Hispanic or Latino,3.7
+78,2016-17,State of California,RW,White,3.2
+79,2016-17,State of California,SD,Students with Disabilities,7.1
+80,2016-17,State of California,SE,English Learners,3.1
+81,2016-17,State of California,SH,Homeless,5.8
+82,2016-17,State of California,SM,Migrant,4
+83,2016-17,State of California,SS,Socioeconomically Disadvantaged,4.7
+84,2016-17,State of California,TA,Total,3.6
+85,2016-17,Emerald High,GF,Female,8.7
+86,2016-17,Emerald High,GM,Male,24.7
+87,2016-17,Emerald High,RH,Hispanic or Latino,16.9
+88,2016-17,Emerald High,RW,White,16.7
+89,2016-17,Emerald High,SD,Students with Disabilities,32.5
+90,2016-17,Emerald High,SE,English Learners,23.7
+91,2016-17,Emerald High,SH,Homeless,13.6
+92,2016-17,Emerald High,SM,Migrant,13.2
+93,2016-17,Emerald High,SS,Socioeconomically Disadvantaged,17.3
+94,2016-17,Emerald High,TA,Total,16.8
+95,2017-18,Emerald High,GF,Female,13.2
+96,2017-18,Emerald High,GM,Male,29.2
+97,2017-18,Emerald High,RH,Hispanic or Latino,21.7
+98,2017-18,Emerald High,RW,White,13.6
+99,2017-18,Emerald High,SD,Students with Disabilities,29.1
+100,2017-18,Emerald High,SE,English Learners,24.4
+101,2017-18,Emerald High,SH,Homeless,28.1
+102,2017-18,Emerald High,SM,Migrant,18.6
+103,2017-18,Emerald High,SS,Socioeconomically Disadvantaged,22.1
+104,2017-18,Emerald High,TA,Total,21.5
+105,2017-18,State of California,GF,Female,2
+106,2017-18,State of California,GM,Male,5
+107,2017-18,State of California,RH,Hispanic or Latino,3.6
+108,2017-18,State of California,RW,White,3
+109,2017-18,State of California,SD,Students with Disabilities,6.8
+110,2017-18,State of California,SE,English Learners,3
+111,2017-18,State of California,SH,Homeless,5.6
+112,2017-18,State of California,SM,Migrant,4
+113,2017-18,State of California,SS,Socioeconomically Disadvantaged,4.4
+114,2017-18,State of California,TA,Total,3.5
+115,2018-19,Emerald High,GF,Female,10.8
+116,2018-19,Emerald High,GF,Female,10.8
+117,2018-19,Emerald High,GM,Male,28.3
+118,2018-19,Emerald High,GM,Male,28.3
+119,2018-19,Emerald High,RH,Hispanic or Latino,19.7
+120,2018-19,Emerald High,RH,Hispanic or Latino,19.7
+121,2018-19,Emerald High,RW,White,15.8
+122,2018-19,Emerald High,RW,White,15.8
+123,2018-19,Emerald High,SD,Students with Disabilities,31.7
+124,2018-19,Emerald High,SD,Students with Disabilities,31.7
+125,2018-19,Emerald High,SE,English Learners,28
+126,2018-19,Emerald High,SE,English Learners,28
+127,2018-19,Emerald High,SH,Homeless,30
+128,2018-19,Emerald High,SH,Homeless,30
+129,2018-19,Emerald High,SM,Migrant,17
+130,2018-19,Emerald High,SM,Migrant,17
+131,2018-19,Emerald High,SS,Socioeconomically Disadvantaged,20.6
+132,2018-19,Emerald High,SS,Socioeconomically Disadvantaged,20.6
+133,2018-19,State of California,GF,Female,2
+134,2018-19,State of California,GM,Male,4.8
+135,2018-19,State of California,RH,Hispanic or Latino,3.6
+136,2018-19,State of California,RW,White,3
+137,2018-19,State of California,SD,Students with Disabilities,6.4
+138,2018-19,State of California,SE,English Learners,3.2
+139,2018-19,State of California,SH,Homeless,6.3
+140,2018-19,State of California,SM,Migrant,4
+141,2018-19,Emerald High,TA,Total,19.6
+142,2018-19,Emerald High,TA,Total,19.6
+143,2019-20,Emerald High,GF,Female,9.9
+144,2019-20,Emerald High,GM,Male,15.3
+145,2019-20,Emerald High,RH,Hispanic or Latino,12.9
+146,2019-20,Emerald High,RW,White,0
+147,2019-20,Emerald High,SD,Students with Disabilities,25.6
+148,2019-20,Emerald High,SE,English Learners,21.1
+149,2019-20,Emerald High,SH,Homeless,18.7
+150,2019-20,Emerald High,SM,Migrant,15
+151,2019-20,Emerald High,SS,Socioeconomically Disadvantaged,13.1
+152,2019-20,Emerald High,TA,Total,12.7
+153,2018-19,State of California,SS,Socioeconomically Disadvantaged,4.4
+154,2018-19,State of California,TA,Total,3.5
+155,2019-20,State of California,GF,Female,1.4
+156,2019-20,State of California,GM,Male,3.4
+157,2019-20,State of California,RH,Hispanic or Latino,2.5
+158,2019-20,State of California,RW,White,2
+159,2019-20,State of California,SD,Students with Disabilities,4.9
+160,2019-20,State of California,SE,English Learners,2.4
+161,2019-20,State of California,SH,Homeless,4.7
+162,2019-20,State of California,SM,Migrant,2.8
+163,2019-20,State of California,SS,Socioeconomically Disadvantaged,3.2
+164,2019-20,State of California,TA,Total,2.5
