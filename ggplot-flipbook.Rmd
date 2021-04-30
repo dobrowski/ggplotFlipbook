@@ -114,6 +114,7 @@ knitr::include_graphics("img/BarbaraKrugerWhyAreYourHere.jpeg")
 Poll - how familiar are you with R and ggplot? 
 - Just stayed from the last session and don't feel like moving
 - Have dabbled but it isn't my go to tool
+- I use them regularly and would like to learn something new
 - I've led this presentation before
 
 In chat, please write a question or something you hope to get out of today.  
