@@ -52,12 +52,25 @@ caaspp <- read.csv("CAASPP_5th_grade.csv")  %>%
 
 name: poppies
 class: inverse, middle, bottom
-background-image: url(img/laurentiu-iordache-qstGMhWuORE-unsplash.jpg)
-background-size: cover 
+
+background-image:url(img/MCOE-Logo.png), url(img/laurentiu-iordache-qstGMhWuORE-unsplash.jpg)
+background-size: 10%, 100% 
+background-position: 90% 90%, 50% 50%
+
+
+
 
 # Demonstration Using ggplot
 ### VISUALIZATION PRINCIPLES IN PRACTICE
 .large[David Dobrowski | Education Data Science Conference | 6 May 2021]
+
+
+```{r logo, fig.align = 'right', out.width = '20%' , echo=FALSE}
+# knitr::include_graphics("img/MCOE Logo Transparent copy.png")
+
+```
+
+
 
 ???
 
@@ -74,6 +87,10 @@ c - clone
 p - presenter mode
 t - timer
 
+
+Going to be talking about ggplot which is part of the tidyverse
+
+principles about vizualizations 
 
 
 ---
@@ -111,14 +128,16 @@ knitr::include_graphics("img/BarbaraKrugerWhyAreYourHere.jpeg")
 
 ???
 
-Poll - how familiar are you with R and ggplot? 
-- Just stayed from the last session and don't feel like moving
-- Have dabbled but it isn't my go to tool
+Poll - How familiar are you with R and ggplot? 
+- I just stayed from the last session and don't feel like moving
+- I have dabbled but it isn't my go to tool
 - I use them regularly and would like to learn something new
 - I've led this presentation before
 
 In chat, please write a question or something you hope to get out of today.  
 
+
+I'm also ok with questions throughout, as well as at the end.  If it is something about R in general or an involved discussion, I may hold that until later. 
 
 ---
 # Reasons Why to Graph Data
@@ -136,6 +155,8 @@ knitr::include_graphics("img/picture-superiority-effect.jpeg")
 
 
 ???
+
+Start with why are we visualizing data? 
 
 Studies have shown that people remember things better when given a picture in addition to text or numbers
 
@@ -159,17 +180,31 @@ knitr::include_graphics("img/DinoSequentialSmaller.gif")
 
 ???
 
-Displaying visually allows use to see patterns we wouldn't neccesarily get from summary statistics
+Displaying visually allows use to see patterns we wouldn't necessarily get from summary statistics
 
 
 ---
 
 # Components of a graph
 
+???
+
+ggplot's name comes from Hadley Wickham's Grammar of Graphics
+
+His concept that there is an underlying grammar for creating visualizations and graphics. 
+
+Everything we are going to do today is layering of additional elements are parts of speech.  
+
+"The transferrable skills from ggplot2 are not the idiosyncracies of plotting syntax, but a powerful way of thinking about visualisation, as a way of mapping between variables and the visual properties of geometric objects that you can perceive."
 
 --
 
 ## data 
+
+???
+
+In general this needs to be in  a tidy format.  each column is a varialbe each case is a row.   
+
 
 --
 
@@ -178,6 +213,13 @@ Displaying visually allows use to see patterns we wouldn't neccesarily get from 
 --
 
 ## aesthetics
+
+???
+
+philosophically it is about the nature of beauty and appearance, 
+
+here it is useful to think about how you are asking the computer to arrange things
+
 
 --
 
@@ -188,6 +230,10 @@ Displaying visually allows use to see patterns we wouldn't neccesarily get from 
 ## geom 
 
 ???
+
+These are the geometric shapes you want to use. 
+
+For instance, lines, points, rectangles, maps, etc. 
 
 These are the three components to creating a graph in ggplot, and arguable the grammar of graphing in any way even if not explicitly laid out.
 
@@ -267,6 +313,18 @@ https://socviz.co/index.html
 ]
 ]
 
+???
+
+Next we are going to go through a real example.  
+
+
+Based on the state's research files.  
+
+Only looking at all students, for ELA in Grade 5 in 2019.  
+Filtered for only the first 6 county codes, so Alameda through Colusa
+
+Using an approach called SLOWggplot.  Bit by bit.  
+This isn't the way you would normally write the code but you can see each individual addition.
 
 ---
 
@@ -278,20 +336,39 @@ name: scatter
 
 # Comparing Percent Exceeded and Scale Score
 
-caaspp %>%
+caaspp %>% # pipe
 ggplot() +
+  # Add axis
   aes(y = Percentage_Standard_Exceeded) +
   aes(x = Mean_Scale_Score)  +
+  # Define geometric shapes
   geom_point() +
+  # Define more, optional aesthetics
   aes(shape = County_Code ) + 
   aes(color = County_Code ) +
   aes(size = Students_Tested) +
+  # Alpha is transparency
   aes(alpha = Percentage_Standard_Met_and_Above) +
+  # Repeating will override
   aes(color = Mean_Scale_Score) +
+  # Defining any details like legend
   theme(legend.position = "none") 
 
 
 ```
+
+
+???
+
+Based on the state's research files.  
+
+Only looking at all students, for ELA in Grade 5 in 2019.  
+Filtered for only the first 6 county codes, so Alameda through Colusa
+
+Using an approach called SLOWggplot.  Bit by bit.  
+This isn't the way you would normally write the code but you can see each individual addition.
+
+
 
 
 ---
@@ -339,14 +416,20 @@ name:barchart
 
 
 susp.green %>%
-  filter(reporting_category == "TA") %>%
+  # To reduce our dataset
+  filter(reporting_category == "TA") %>% # All students
   ggplot( ) +
   aes(x = academic_year) +
   aes(y = as.numeric( suspension_rate_total)/100) +
+  # A different geom than last time
   geom_col(position = "dodge" ) +
+  # "dodge" uses the group 
   aes(group = school_name) +
+  # Color is Outline
   aes(color = school_name) +
+  # Fill is Inside color
   aes(fill = school_name) +
+  # Adjust labels
     labs(title = "Percentage Suspended in Emerald High \ncompared to California over time") +
     labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") +
   theme(legend.position = "bottom") 
@@ -354,21 +437,15 @@ susp.green %>%
 ```
 
 
----
+???
 
-# Principle of Proportional Ink
+Looking at a real High School which there were concerns about suspension data
 
---
+Start with a bar graph
 
-### The sizes of shaded areas in a visualization need to be proportional to the data values they represent.
 
---
 
-### Eliminate clutter
 
---
-
-### Focus attention
 
 
 ---
@@ -386,6 +463,7 @@ susp.green %>%
   aes(x = academic_year) +
   aes(y = as.numeric( suspension_rate_total)/100) +
   aes(group = school_name) +
+  # New geom, same data
   geom_line( ) +
   aes(color = school_name) +
     labs(title = "Percentage Suspended in Emerald High \ncompared to California over time") +
@@ -428,9 +506,11 @@ name: facet
 
 
 susp.green %>%
+  # Notice, not filtering now 
   ggplot( ) +
   aes(x = academic_year) +
   aes(y = as.numeric( suspension_rate_total)/100) +
+  # Faceting is not a geom
   facet_wrap(~definition) +
   aes(group = school_name) +
   geom_line( show.legend = FALSE ) +
@@ -448,6 +528,93 @@ susp.green %>%
 
 ```
 
+
+---
+
+`r chunk_reveal("bar_revisit2", break_type = "rotate", widths = c(50,50))`
+
+```{r bar_revisit2, eval = FALSE, echo = FALSE}
+
+
+susp.green %>%
+  filter(reporting_category == "TA") %>% 
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_col(position = "dodge" ) +
+  aes(group = school_name) +
+  aes(color = school_name) +
+  aes(fill = school_name) +
+    labs(title = "Percentage Suspended in Emerald High \ncompared to California over time") +
+    labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") + 
+  theme_excel() + #ROTATE
+  theme_economist() + #ROTATE
+  theme_wsj() + #ROTATE
+  theme_gdocs() +  #ROTATE
+  theme_hc() + #ROTATE
+  labs(x = "Academic Year")
+
+
+```
+
+
+???
+
+
+Themes help you adjust many elements all together.  
+
+Here are a few themes that mimic popular settings in the world
+
+
+
+
+---
+
+`r chunk_reveal("bar_revisit", break_type = "rotate", widths = c(50,50))`
+
+```{r bar_revisit, eval = FALSE, echo = FALSE}
+
+
+susp.green %>%
+  filter(reporting_category == "TA") %>% 
+  ggplot( ) +
+  aes(x = academic_year) +
+  aes(y = as.numeric( suspension_rate_total)/100) +
+  geom_col(position = "dodge" ) +
+  aes(group = school_name) +
+  aes(fill = school_name) +
+    labs(title = "Percentage Suspended in Emerald High \ncompared to California over time") +
+    labs(caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") + 
+  scale_fill_colorblind() + #ROTATE
+  scale_fill_gdocs() + #ROTATE
+  scale_fill_few() + #ROTATE
+  labs(x = "Academic Year")
+
+
+```
+
+
+???
+
+Can easily change color palettes too
+
+
+
+---
+
+# Principle of Proportional Ink
+
+--
+
+### The sizes of shaded areas in a visualization need to be proportional to the data values they represent.
+
+--
+
+### Eliminate clutter
+
+--
+
+### Focus attention
 
 
 ---
@@ -519,10 +686,15 @@ knitr::include_graphics("img/learn_unlearn_relearn.jpeg")
 ---
 class: inverse
 
-# Notes: 
+# Thanks: 
 
 > **The flipbooked portion of this presentation was created with the {flipbookr} package.  Get it at remotes::install_github("EvaMaeRey/flipbookr")**
 
 - In addition to creating flipbookr, Evangeline Reynolds inspired the approach to showing aspects of ggplot. https://evangelinereynolds.netlify.app/
 
-- The formating was learned and inspired from Allison Hill https://arm.rbind.io/slides/xaringan.html#1
+- The formatting was learned and inspired from Allison Hill https://arm.rbind.io/slides/xaringan.html#1
+
+- CAASPP data files: https://caaspp-elpac.cde.ca.gov/caaspp/ResearchFileList?ps=true&lstTestType=B&lstTestYear=2015&lstCounty=00&lstCntyNam=Select%20County...&lstFocus=btnApplySelections
+
+
+- Suspension data files: https://www.cde.ca.gov/ds/sd/sd/filessd.asp
