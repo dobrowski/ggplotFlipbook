@@ -62,7 +62,8 @@ background-position: 90% 90%, 50% 50%
 
 # Demonstration Using ggplot
 ### VISUALIZATION PRINCIPLES IN PRACTICE
-.large[David Dobrowski | Education Data Science Conference | 6 May 2021]
+.large[David Dobrowski | Education Data Science Conference | 6 May 2021
+ddobrowski@montereycoe.org]
 
 
 ```{r logo, fig.align = 'right', out.width = '20%' , echo=FALSE}
@@ -111,6 +112,8 @@ knitr::include_graphics("img/qrcode.png")
 ???
 
 how to find these slides and github repo to play along at home
+
+See also the earlier sessions by Oscar and Tyler ;  Ryan 
 
 
 ---
@@ -335,6 +338,8 @@ name: scatter
 ```{r intro, include = FALSE}
 
 # Comparing Percent Exceeded and Scale Score
+
+library(ggplot2)  # Or tidyverse
 
 caaspp %>% # pipe
 ggplot() +
@@ -675,6 +680,16 @@ https://ggplot2-book.org/index.html
 
 ### Many others:
 https://bookdown.org/home/tags/visualization/
+
+
+---
+
+# When you get stuck
+
+### Search StackOverflow
+
+### Search R Community
+https://community.rstudio.com/
 
 ---
 
