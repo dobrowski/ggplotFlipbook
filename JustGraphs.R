@@ -62,6 +62,8 @@ caaspp %>%
     theme(legend.position = "none") 
 
 
+ggsave(p, "Example plot.png", width = 9, height = 2)
+
 ### Bar chart -------
 
 # slow 
@@ -84,7 +86,7 @@ susp.green %>%
 # standard
 
 
-susp.green %>%
+p <- susp.green %>%
     filter(reporting_category == "TA") %>%
     ggplot( aes(x = academic_year,
                 y = as.numeric( suspension_rate_total)/100,
@@ -96,6 +98,8 @@ susp.green %>%
          caption = "Source: https://www.cde.ca.gov/ds/sd/sd/filessd.asp") +
     theme(legend.position = "bottom") 
 
+
+p + coord_flip()
 
 ### Facet line chart ------
 

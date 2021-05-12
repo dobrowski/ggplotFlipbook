@@ -62,8 +62,8 @@ background-position: 90% 90%, 50% 50%
 
 # Demonstration Using ggplot
 ### VISUALIZATION PRINCIPLES IN PRACTICE
-.large[David Dobrowski | Education Data Science Conference | 6 May 2021
-ddobrowski@montereycoe.org]
+.large[David Dobrowski | Education Data Science Conference | 6 May 2021 |
+ ddobrowski@montereycoe.org]
 
 
 ```{r logo, fig.align = 'right', out.width = '20%' , echo=FALSE}
